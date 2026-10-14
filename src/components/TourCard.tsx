@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Tour } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { useBooking } from '../context/BookingContext';
-import { MessageCircle, Clock, Calendar, ArrowRight, ShieldCheck, Waves, Compass } from 'lucide-react';
+import { MessageCircle, Clock, Calendar, ArrowRight, ShieldCheck, Waves, Compass, Users, Car, CheckCircle2 } from 'lucide-react';
 
 interface TourCardProps {
   tour: Tour;
@@ -31,6 +31,16 @@ export const TourCard: React.FC<TourCardProps> = ({ tour, onSelectTour }) => {
     }
   };
 
+  const travelersText = (() => {
+    const count = tour.travelersCount || 1250;
+    if (language === 'tr') return `${count.toLocaleString('tr-TR')}+ kişi gitti`;
+    if (language === 'ru') return `${count.toLocaleString()}+ туристов выбрало`;
+    if (language === 'pl') return `${count.toLocaleString()}+ osób wybrało`;
+    if (language === 'de') return `${count.toLocaleString()}+ Gäste buchten`;
+    if (language === 'cs') return `${count.toLocaleString()}+ cestovatelů`;
+    return `${count.toLocaleString()}+ travelers joined`;
+  })();
+
   const fallbackGradient = 'from-emerald-900 to-stone-900';
 
   return (
@@ -53,7 +63,7 @@ export const TourCard: React.FC<TourCardProps> = ({ tour, onSelectTour }) => {
           </div>
         )}
 
-        {/* Top subtle badge without pill clutter */}
+        {/* Top duration badge */}
         <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/60 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-md">
           <Clock className="w-3.5 h-3.5 text-emerald-400" />
           <span>{tour.duration}</span>
@@ -64,13 +74,19 @@ export const TourCard: React.FC<TourCardProps> = ({ tour, onSelectTour }) => {
             Top Pick
           </div>
         )}
+
+        {/* Travelers Count Overlay Badge */}
+        <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-stone-950/85 backdrop-blur-md text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-md shadow-sm border border-stone-700/50">
+          <Users className="w-3.5 h-3.5 text-amber-400" />
+          <span>{travelersText}</span>
+        </div>
       </div>
 
       {/* Content Area */}
       <div className="p-5 flex-1 flex flex-col justify-between">
         
         <div className="space-y-2.5">
-          {/* Subtle Category & Operating Days metadata line */}
+          {/* Category & Operating Days metadata line */}
           <div className="text-[11px] font-semibold text-emerald-700 uppercase tracking-wider flex items-center gap-1.5">
             <span>{tour.category}</span>
             <span className="text-stone-300">·</span>
@@ -84,6 +100,18 @@ export const TourCard: React.FC<TourCardProps> = ({ tour, onSelectTour }) => {
           <p className="text-xs sm:text-sm text-stone-600 line-clamp-2 leading-relaxed">
             {trans.shortDescription}
           </p>
+
+          {/* Value Badges: Free Roundtrip Transfer + Pay on Tour Day */}
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-2 py-0.5 rounded-md">
+              <Car className="w-3 h-3 text-emerald-600" />
+              <span>{language === 'tr' ? 'Ücretsiz Transfer Dahil' : 'Free Transfer Included'}</span>
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-900 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-md">
+              <CheckCircle2 className="w-3 h-3 text-amber-600" />
+              <span>{language === 'tr' ? 'Tur Günü Öde' : 'Pay on Tour Day'}</span>
+            </span>
+          </div>
         </div>
 
         {/* Pricing and Actions Area */}

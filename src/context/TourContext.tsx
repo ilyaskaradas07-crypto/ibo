@@ -28,7 +28,8 @@ export const TourProvider: React.FC<{ children: React.ReactNode }> = ({ children
       ru: "Здравствуйте! Добро пожаловать в Fix Price Alanya Tours. Я ваш AI тревел-ассистент. Я помогу выбрать лучшую экскурсию, сравнить цены и быстро подготовить бронирование.",
       pl: "Dzień dobry! Witamy w Fix Price Alanya Tours. Jestem Twoim wirtualnym asystentem podróży. Chętnie pomogę wybrać najlepszą wycieczkę, sprawdzić ceny i przygotować rezerwację.",
       cs: "Dobrý den! Vítejte u Fix Price Alanya Tours. Jsem váš virtuální cestovní rádce. Rád vám pomohu vybrat výlet, porovnat ceny a připravit rezervaci.",
-      de: "Hallo! Willkommen bei Fix Price Alanya Tours. Ich bin Ihr KI-Reiseassistent. Ich helfe Ihnen, die besten Touren zu finden, Preise zu vergleichen und Ihre Buchung vorzubereiten."
+      de: "Hallo! Willkommen bei Fix Price Alanya Tours. Ich bin Ihr KI-Reiseassistent. Ich helfe Ihnen, die besten Touren zu finden, Preise zu vergleichen und Ihre Buchung vorzubereiten.",
+      tr: "Merhaba! Fix Price Alanya Tours'a hoş geldiniz. Ben yapay zeka seyahat asistanınızım. En iyi turları bulmanıza, fiyatları karşılaştırmanıza ve rezervasyonunuzu hazırlamanıza yardımcı olabilirim."
     },
     defaultCurrency: 'EUR',
     defaultLanguage: 'en',

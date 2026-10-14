@@ -1,4 +1,5 @@
 import { Language } from '../types';
+import { TURKISH_UI_TRANSLATIONS } from './turkishUiTranslations';
 
 export interface UiTranslations {
   brandName: string;
@@ -1369,7 +1370,8 @@ export const UI_TRANSLATIONS: Record<Language, UiTranslations> = {
       trustPriceTitle: 'Transparenter Festpreis',
       trustPriceDesc: 'Antalya 80 €, Gazipasa 45 €. Keine Treibstoff-, Maut- oder Nachtzuschläge.'
     }
-  }
+  },
+  tr: TURKISH_UI_TRANSLATIONS
 };
 
 export function generateWhatsAppMessage(params: {
@@ -1465,6 +1467,25 @@ Kontakttelefon: ${phone}
 Zusätzliche Anmerkungen: ${notes || 'Keine'}
 
 Bitte bestätigen Sie die Verfügbarkeit, genaue Abholzeit, den Treffpunkt und den Endpreis.`;
+
+    case 'tr':
+      return `Merhaba FIX PRICE ALANYA TOURS! Tur rezervasyonu yapmak istiyorum.
+
+Tur: ${tourName}
+Tarih: ${date}
+Yetişkin: ${adults}
+Çocuk: ${children}
+Tahmini Toplam Fiyat: ${currencySymbol}${totalPrice}
+Ad Soyad: ${customerName}
+Otel / Adres: ${hotelName}
+Alınış Tercihi: ${pickupPreference}
+WhatsApp Telefonu: ${phone}
+Ek Notlar: ${notes || 'Yok'}
+
+Ödeme Durumu: Tur günü araçta/rehbere nakit veya kart ile (Ön ödeme yok)
+Transfer: Ücretsiz gidiş-dönüş otel transferi dahil
+
+Lütfen müsaitliği, kesin alınış saatini ve rezervasyonumu onaylar mısınız?`;
 
     case 'en':
     default:
