@@ -1,0 +1,6 @@
+{
+  "name": "FIX PRICE ALANYA TOURS",
+  "description": "Premium Alanya tour booking platform with multilingual support, WhatsApp reservations, transparent fixed prices, and AI travel assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

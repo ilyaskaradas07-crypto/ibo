@@ -1,0 +1,2388 @@
+import { Tour } from '../types';
+import { TURKISH_TOUR_TRANSLATIONS } from './turkishTourTranslations';
+
+const RAW_INITIAL_TOURS: Tour[] = [
+  {
+    id: 'boat-tour',
+    slug: 'boat-tour',
+    category: 'boat',
+    price: 18,
+    childPrice: 10,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '09:30 - 15:30 (approx. 6h)',
+    pickupType: 'hotel',
+    pickupTime: '08:30 - 09:15 depending on hotel area',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 1,
+    translations: {
+      en: {
+        name: 'Boat Tour',
+        shortDescription: 'Classic Alanya pirate ship cruise with swimming stops around the Red Tower, Pirate Cave, and Cleopatra Beach.',
+        description: 'Sail around Alanya peninsula on a traditional themed cruise boat. Experience swimming in crystal turquoise waters near legendary sea caves (Pirate, Lovers, and Phosphorous caves), view the historic Alanya Castle from the sea, and enjoy an open buffet lunch onboard.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Alanya Castle panorama from the sea', 'Swimming at Pirate, Lovers & Phosphorous Caves', 'Cleopatra Beach swim stop', 'Buffet lunch on boat'],
+        included: ['Hotel round-trip transfer', 'Boat cruise', 'Buffet lunch onboard', 'Full passenger insurance'],
+        excluded: ['Personal expenses', 'Drinks on board (unless all-inclusive requested)', 'Professional photo service'],
+        whatToBring: ['Swimsuit and towel', 'Sunscreen and sunglasses', 'Camera or waterproof phone case', 'Pocket money for beverages'],
+        safetyNotes: 'Life jackets available for all guests. Not suitable for severe mobility impairments.',
+        itinerary: [
+          { time: '08:45', title: 'Hotel Pickup', description: 'Pickup from Alanya and nearby district hotels.' },
+          { time: '09:30', title: 'Harbour Departure', description: 'Sailing past the Red Tower and shipyard.' },
+          { time: '11:00', title: 'Caves & Swimming', description: 'Stops near Pirate and Lovers caves for swimming.' },
+          { time: '12:30', title: 'Lunch on Deck', description: 'Fresh grilled chicken, pasta, and Mediterranean salad.' },
+          { time: '14:00', title: 'Cleopatra Beach Stop', description: 'Open sea swimming and relaxing.' },
+          { time: '15:30', title: 'Return to Port & Transfer', description: 'Comfortable transfer back to your hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Морская прогулка на корабле (Boat Tour)',
+        shortDescription: 'Классическая морская прогулка вокруг мыса Аланьи с остановками для купания у Красной башни, пещер и пляжа Клеопатры.',
+        description: 'Отправьтесь в круиз на пиратской шхуне вдоль живописного полуострова Аланьи. Вы увидите древнюю крепость с моря, искупаетесь в бирюзовых водах у пещер Пиратов, Влюбленных и Фосфорной, а также пообедаете на борту.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Вид на крепость Аланьи с моря', 'Купание у Пиратской и Фосфорной пещер', 'Остановка у пляжа Клеопатры', 'Обед на борту'],
+        included: ['Трансфер из отеля и обратно', 'Морская прогулка', 'Обед на корабле', 'Страховка'],
+        excluded: ['Напитки на борту', 'Личные расходы', 'Фотографии от фотографа'],
+        whatToBring: ['Купальник и полотенце', 'Солнцезащитный крем и очки', 'Деньги на напитки'],
+        safetyNotes: 'Спасательные жилеты в наличии для взрослых и детей.',
+        itinerary: [
+          { time: '08:45', title: 'Сбор из отелей', description: 'Трансфер из отелей Аланьи.' },
+          { time: '09:30', title: 'Выход из порта', description: 'Проплываем мимо Красной башни и верфи.' },
+          { time: '12:30', title: 'Обед на корабле', description: 'Курица на гриле, паста и свежий салат.' },
+          { time: '15:30', title: 'Возвращение в отель', description: 'Трансфер обратно.' }
+        ]
+      },
+      pl: {
+        name: 'Rejs Statkiem (Boat Tour)',
+        shortDescription: 'Klasyczny rejs wokół półwyspu Alanyi ze kąpielami przy Czerwonej Wieży, jaskiniach piratów i plaży Kleopatry.',
+        description: 'Popłyń wokół malowniczego cypla Alanyi. Podziwiaj zamek z perspektywy morza, kąp się w lazurowych wodach przy Jaskini Piratów i Jaskini Zakochanych oraz zjedz obiad na pokładzie.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Panorama zamku w Alanyi od strony morza', 'Kąpiele przy Jaskini Piratów', 'Postój przy plaży Kleopatry', 'Obiad na statku'],
+        included: ['Transfer z/do hotelu', 'Rejs statkiem', 'Obiad na pokładzie', 'Ubezpieczenie'],
+        excluded: ['Napoje na statku', 'Wydatki osobiste', 'Pamiątkowe zdjęcia'],
+        whatToBring: ['Strój kąpielowy i ręcznik', 'Krem z filtrem i okulary', 'Drobne na napoje'],
+        safetyNotes: 'Kamizelki ratunkowe dostępne na pokładzie.',
+        itinerary: [
+          { time: '08:45', title: 'Odbiór z hotelu', description: 'Transfer z hoteli w Alanyi.' },
+          { time: '09:30', title: 'Wypłynięcie z portu', description: 'Rejs obok Czerwonej Wieży.' },
+          { time: '15:30', title: 'Powrót do hotelu', description: 'Transfer powrotny.' }
+        ]
+      },
+      cs: {
+        name: 'Plavba lodí (Boat Tour)',
+        shortDescription: 'Klasická lodní plavba kolem poloostrova Alanya s koupáním u Červené věže, jeskyní a Kleopatřiny pláže.',
+        description: 'Zažijte plavbu na tradiční lodi podél skalnatého poloostrova. Užijte si koupání v průzračném moři u pirátských jeskyní a chutný oběd na palubě.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Pohled na hrad z moře', 'Koupání u jeskyní', 'Pláž Kleopatra', 'Oběd na lodi'],
+        included: ['Zpáteční transfer z hotelu', 'Plavba lodí', 'Oběd formou bufetu', 'Pojištění'],
+        excluded: ['Nápoje na palubě', 'Osobní výdaje'],
+        whatToBring: ['Plavky a ručník', 'Opalovací krém', 'Kapesné na nápoje'],
+        safetyNotes: 'Záchranné vesty k dispozici.',
+        itinerary: [
+          { time: '08:45', title: 'Vyzvednutí z hotelu', description: 'Pohodlný transfer z Alanye.' },
+          { time: '09:30', title: 'Vyplutí z přístavu', description: 'Vyhlídková plavba kolem pevnosti.' },
+          { time: '15:30', title: 'Návrat do hotelu', description: 'Transfer zpět.' }
+        ]
+      },
+      de: {
+        name: 'Bootstour Alanya',
+        shortDescription: 'Klassische Bootstour rund um die Halbinsel Alanya mit Badestopps am Roten Turm, Piratenhöhlen und Kleopatra-Strand.',
+        description: 'Segeln Sie auf einem traditionellen Piratenschiff entlang der Küste von Alanya. Genießen Sie Badestopps im türkisfarbenen Wasser bei den Piraten- und Liebeshöhlen sowie ein leckeres Mittagsbuffet an Bord.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Alanya Burgpanorama vom Meer', 'Baden an Piraten- & Phosphorhöhlen', 'Stopp am Kleopatra-Strand', 'Mittagessen an Bord'],
+        included: ['Hoteltransfer hin & zurück', 'Schifffahrt', 'Mittagsbuffet', 'Passagierversicherung'],
+        excluded: ['Getränke an Bord', 'Persönliche Ausgaben', 'Fotoservice'],
+        whatToBring: ['Badekleidung und Handtuch', 'Sonnenschutz', 'Taschengeld für Getränke'],
+        safetyNotes: 'Rettungswesten für alle Altersgruppen vorhanden.',
+        itinerary: [
+          { time: '08:45', title: 'Hotelabholung', description: 'Abholung von Hotels in Alanya.' },
+          { time: '09:30', title: 'Abfahrt im Hafen', description: 'Fahrt vorbei am Roten Turm.' },
+          { time: '15:30', title: 'Rückkehr zum Hotel', description: 'Rücktransfer.' }
+        ]
+      }
+    },
+    faqs: [
+      {
+        question: {
+          en: 'Are drinks included in the Boat Tour?',
+          ru: 'Включены ли напитки в стоимость морской прогулки?',
+          pl: 'Czy napoje są w cenie rejsu?',
+          cs: 'Jsou nápoje zahrnuty v ceně plavby?',
+          de: 'Sind Getränke bei der Bootstour inklusive?'
+        },
+        answer: {
+          en: 'Standard lunch is included. Drinks can be purchased at fair bar prices, or all-inclusive drink packages can be confirmed via WhatsApp.',
+          ru: 'Обед включен. Напитки можно приобрести в баре по доступным ценам или уточнить вариант все включено через WhatsApp.',
+          pl: 'Obiad jest w cenie. Napoje można dokupić w barze na statku lub ustalić pakiet all-inclusive przez WhatsApp.',
+          cs: 'Oběd je zahrnut v ceně. Nápoje lze zakoupit na baru nebo předem ověřit na WhatsApp.',
+          de: 'Das Mittagessen ist inklusive. Getränke sind an der Bar erhältlich oder können per WhatsApp angefragt werden.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'green-canyon',
+    slug: 'green-canyon',
+    category: 'nature',
+    price: 30,
+    childPrice: 18,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '08:30 - 16:30 (approx. 8h)',
+    pickupType: 'hotel',
+    pickupTime: '08:00 - 08:45 depending on hotel location',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 2,
+    translations: {
+      en: {
+        name: 'Green Canyon',
+        shortDescription: 'Peaceful boat excursion on the emerald Oymapınar dam lake surrounded by the majestic Taurus Mountains.',
+        description: 'Immerse yourself in tranquil emerald waters in the heart of the Taurus Mountains. Sail through Grand and Little Canyons on an eco-friendly catamaran boat, take swimming breaks in freshwater, and savor a riverside lunch.',
+        operatingDays: 'Monday, Wednesday, Friday, Sunday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Cruising on emerald reservoir waters', 'Swimming in mountain freshwater', 'Stunning Taurus mountain gorge views', 'Lakeside restaurant lunch'],
+        included: ['Hotel pickup and drop-off', 'Catamaran boat tour in Green Canyon', 'Lunch at restaurant', 'Insurance'],
+        excluded: ['Personal expenses', 'Drinks at lunch'],
+        whatToBring: ['Swimwear and towel', 'Comfortable footwear', 'Light jacket for spring/autumn', 'Camera'],
+        safetyNotes: 'Calm water cruise, very suitable for families and senior travelers.',
+        itinerary: [
+          { time: '08:15', title: 'Hotel Pickup', description: 'Scenic drive towards the Taurus Mountains.' },
+          { time: '10:00', title: 'Oymapınar Dam Arrival', description: 'Boarding the boat at the lake pier.' },
+          { time: '12:30', title: 'Lakeside Lunch', description: 'Relaxed meal by the lake.' },
+          { time: '14:30', title: 'Second Canyon Cruise', description: 'Swimming stop and relaxation.' },
+          { time: '16:30', title: 'Hotel Return', description: 'Arrive back at your hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Зеленый Каньон (Green Canyon)',
+        shortDescription: 'Спокойная прогулка на катамаране по изумрудному водохранилищу Оймапынар в окружении Таврских гор.',
+        description: 'Одно из красивейших природных мест Турции. Изумрудное горное озеро, каньоны с высокими скалами, купание в пресной кристальной воде и вкусный обед в ресторане у воды.',
+        operatingDays: 'Понедельник, Среда, Пятница, Воскресенье',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Изумрудная вода каньона', 'Купание в горном озере', 'Горные пейзажи Тавра', 'Обед в ресторане'],
+        included: ['Трансфер туда и обратно', 'Прогулка на корабле/катамаране', 'Обед', 'Страховка'],
+        excluded: ['Напитки', 'Личные расходы'],
+        whatToBring: ['Купальник и полотенце', 'Удобная обувь', 'Фотоаппарат'],
+        safetyNotes: 'Спокойная прогулка без качки, идеально для семей с детьми.',
+        itinerary: [
+          { time: '08:15', title: 'Выезд из отеля', description: 'Дорога к водохранилищу Оймапынар.' },
+          { time: '10:00', title: 'Посадка на катамаран', description: 'Круиз по каньону.' },
+          { time: '16:30', title: 'Возвращение в отель', description: 'Трансфер в Аланью.' }
+        ]
+      },
+      pl: {
+        name: 'Zielony Kanion (Green Canyon)',
+        shortDescription: 'Malowniczy rejs po szmaragdowym jeziorze Oymapınar w sercu Gór Taurus.',
+        description: 'Zrelaksuj się podczas rejsu katamaranem po zapierającym dech w piersiach Zielonym Kanionie. Szmaragdowa woda, orzeźwiające kąpiele i obiad w restauracji nad brzegiem.',
+        operatingDays: 'Poniedziałek, Środa, Piątek, Niedziela',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Szmaragdowe wody jeziora', 'Kąpiel w górskiej wodzie', 'Widoki na góry Taurus', 'Obiad w cenie'],
+        included: ['Transfer w obie strony', 'Rejs po Zielonym Kanionie', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje do obiadu', 'Wydatki osobiste'],
+        whatToBring: ['Strój kąpielowy, ręcznik', 'Wygodne buty', 'Aparat fotograficzny'],
+        safetyNotes: 'Spokojny rejs po gładkiej tafli wody, polecany dla rodzin.',
+        itinerary: [
+          { time: '08:15', title: 'Zbiórka z hotelu', description: 'Przejazd w góry Taurus.' },
+          { time: '16:30', title: 'Powrót do hotelu', description: 'Powrót do Alanyi.' }
+        ]
+      },
+      cs: {
+        name: 'Zelený kaňon (Green Canyon)',
+        shortDescription: 'Klidná plavba po smaragdovém jezeře Oymapınar v pohoří Taurus.',
+        description: 'Užijte si nedotčenou přírodu Zeleného kaňonu. Plavba po smaragdové přehradě, osvěžující koupání a oběd v restauraci u vody.',
+        operatingDays: 'Pondělí, Středa, Pátek, Neděle',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Smaragdová vodní hladina', 'Koupání v horském jezeře', 'Skalnaté soutěsky', 'Oběd u vody'],
+        included: ['Transfer z/do hotelu', 'Plavba po kaňonu', 'Oběd', 'Pojištění'],
+        excluded: ['Nápoje', 'Osobní výdaje'],
+        whatToBring: ['Plavky a ručník', 'Fotoaparát'],
+        safetyNotes: 'Velmi klidný výlet vhodný pro všechny věkové skupiny.',
+        itinerary: [
+          { time: '08:15', title: 'Odjezd z hotelu', description: 'Cesta k přehradě.' },
+          { time: '16:30', title: 'Návrat do hotelu', description: 'Příjezd zpět.' }
+        ]
+      },
+      de: {
+        name: 'Green Canyon Bootsausflug',
+        shortDescription: 'Ruhige Bootsfahrt auf dem smaragdgrünen Oymapınar-Stausee im Taurusgebirge.',
+        description: 'Entdecken Sie die atemberaubende Natur des Green Canyon. Fahren Sie mit dem Katamaran durch enge Felsenschluchten, baden Sie im klaren Bergwasser und genießen Sie ein Mittagessen am Seeufer.',
+        operatingDays: 'Montag, Mittwoch, Freitag, Sonntag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Smaragdgrünes Bergwasser', 'Erfrischendes Baden im See', 'Schluchten des Taurusgebirges', 'Mittagessen am See'],
+        included: ['Transfer ab/bis Hotel', 'Schifffahrt im Green Canyon', 'Mittagessen', 'Versicherung'],
+        excluded: ['Getränke', 'Persönliche Ausgaben'],
+        whatToBring: ['Badesachen, Handtuch', 'Bequeme Schuhe', 'Kamera'],
+        safetyNotes: 'Sehr ruhige Fahrt auf ruhigem Wasser, ideal für Familien.',
+        itinerary: [
+          { time: '08:15', title: 'Hotelabholung', description: 'Fahrt in das Taurusgebirge.' },
+          { time: '16:30', title: 'Rückkehr ins Hotel', description: 'Rückfahrt nach Alanya.' }
+        ]
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'green-canyon-zoo',
+    slug: 'green-canyon-zoo',
+    category: 'family',
+    price: 28,
+    childPrice: 16,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '08:30 - 16:00 (approx. 7.5h)',
+    pickupType: 'hotel',
+    pickupTime: '08:00 - 08:45 depending on hotel',
+    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 3,
+    translations: {
+      en: {
+        name: 'Green Canyon + Zoo Park',
+        shortDescription: 'Combination nature excursion featuring the Green Canyon boat tour and a visit to a regional animal park.',
+        description: 'An exciting family-friendly day combining mountain canyon boat scenery with a visit to the local animal park. Ideal for kids and families wanting nature and wildlife together.',
+        operatingDays: 'Tuesday, Thursday, Saturday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Boat trip in Green Canyon', 'Visit to Zoo / Animal Park', 'Swimming break', 'Family lunch included'],
+        included: ['Hotel transfers', 'Boat trip', 'Zoo park entrance', 'Lunch', 'Insurance'],
+        excluded: ['Drinks', 'Animal feeding photos/souvenirs'],
+        whatToBring: ['Sun protection', 'Camera', 'Comfortable walking shoes', 'Swimwear'],
+        itinerary: [
+          { time: '08:30', title: 'Pickup', description: 'Hotel transfer towards Manavgat hills.' },
+          { time: '10:00', title: 'Zoo Park Visit', description: 'See regional animals and birds.' },
+          { time: '12:00', title: 'Canyon Cruise & Lunch', description: 'Boat ride and meal.' },
+          { time: '16:00', title: 'Return', description: 'Hotel drop-off.' }
+        ]
+      },
+      ru: {
+        name: 'Зеленый Каньон + Зоопарк (Green Canyon + Zoo)',
+        shortDescription: 'Комбинированная экскурсия: прогулка на кораблике по каньону и посещение зоопарка для всей семьи.',
+        description: 'Прекрасный день на природе для всей семьи! Прогулка по Зеленому Каньону, купание и посещение мини-зоопарка с птицами и животными.',
+        operatingDays: 'Вторник, Четверг, Суббота',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Прогулка на кораблике', 'Посещение зоопарка', 'Купание в горной воде', 'Обед включен'],
+        included: ['Трансфер', 'Кораблик в каньоне', 'Вход в зоопарк', 'Обед', 'Страховка'],
+        excluded: ['Напитки', 'Личные расходы'],
+        whatToBring: ['Панама/кепка', 'Удобная обувь', 'Купальник'],
+        itinerary: [{ time: '08:30', title: 'Сбор', description: 'Выезд из отеля.' }]
+      },
+      pl: {
+        name: 'Zielony Kanion + Zoo (Green Canyon + Zoo)',
+        shortDescription: 'Połączenie rejsu po Zielonym Kanionie z wizytą w lokalnym mini zoo, idealne dla rodzin z dziećmi.',
+        description: 'Wspaniała wycieczka rodzinna łącząca rejs po szmaragdowych wodach ze spotkaniem ze zwierzętami w zoo.',
+        operatingDays: 'Wtorek, Czwartek, Sobota',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Rejs po kanionie', 'Wstęp do Zoo', 'Obiad w cenie', 'Zabawa dla dzieci'],
+        included: ['Transfer hotelowy', 'Rejs', 'Bilety do zoo', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje'],
+        whatToBring: ['Wygodne buty', 'Aparat', 'Krem z filtrem'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Zelený kaňon + Zoo (Green Canyon + Zoo)',
+        shortDescription: 'Kombinace plavby po kaňonu a návštěvy zoo parku, skvělé pro rodiny s dětmi.',
+        description: 'Příjemný rodinný výlet spojující vyhlídkovou plavbu a zvířecí park.',
+        operatingDays: 'Úterý, Čtvrtek, Sobota',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Plavba po jezeře', 'Vstup do zoo', 'Oběd v ceně'],
+        included: ['Transfer', 'Plavba', 'Vstup do zoo', 'Oběd'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Pohodlná obuv', 'Plavky'],
+        itinerary: []
+      },
+      de: {
+        name: 'Green Canyon + Zoo Park',
+        shortDescription: 'Kombination aus Schifffahrt im Green Canyon und Besuch des regionalen Zoos, ideal für Familien.',
+        description: 'Ein abwechslungsreicher Tag für Groß und Klein mit Bootstour im smaragdgrünen Canyon und Tieren im Zoopark.',
+        operatingDays: 'Dienstag, Donnerstag, Samstag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Schifffahrt im Canyon', 'Zoobesuch', 'Mittagessen inklusive'],
+        included: ['Hoteltransfer', 'Schifffahrt', 'Zoo-Eintritt', 'Mittagessen', 'Versicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Bequeme Schuhe', 'Sonnenschutz', 'Badesachen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'relax-boat',
+    slug: 'relax-boat',
+    category: 'boat',
+    price: 25,
+    childPrice: 15,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '10:00 - 15:30 (approx. 5.5h)',
+    pickupType: 'hotel',
+    pickupTime: '09:00 - 09:30',
+    image: 'https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 4,
+    translations: {
+      en: {
+        name: 'Relax Boat',
+        shortDescription: 'Quiet, music-free boat cruise for pure relaxation, peaceful sunbathing, and crystal-clear swimming stops.',
+        description: 'If you want to avoid loud party music and animated pirate shows, the Relax Boat is tailored for you. Enjoy gentle Mediterranean breezes, ambient acoustic sounds, quiet coves, and swimming in peace.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['No loud music or animations', 'Quiet sunbathing deck', 'Long swimming breaks in tranquil bays', 'Freshly prepared onboard lunch'],
+        included: ['Hotel transfer', 'Relax boat cruise', 'Lunch on board', 'Insurance'],
+        excluded: ['Beverages', 'Personal expenses'],
+        whatToBring: ['Book or e-reader', 'Sunscreen', 'Swimwear and towel'],
+        itinerary: [
+          { time: '09:15', title: 'Hotel Pickup', description: 'Transfer to Alanya Marina.' },
+          { time: '10:00', title: 'Peaceful Departure', description: 'Cruising away from busy tourist routes.' },
+          { time: '15:30', title: 'Return', description: 'Transfer back to hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Релакс-корабль (Relax Boat)',
+        shortDescription: 'Спокойная морская прогулка без громкой музыки и пены — только солнце, кристальное море и отдых.',
+        description: 'Для тех, кто ищет тишину и покой. Никаких громких вечеринок и пиратских аниматоров. Только шум волн, спокойное купание в чистейших бухтах и вкусный обед.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Без шумной музыки', 'Уютная палуба для загара', 'Купание в тихих лагунах', 'Вкусный обед'],
+        included: ['Трансфер', 'Прогулка на релакс-яхте', 'Обед', 'Страховка'],
+        excluded: ['Напитки'],
+        whatToBring: ['Полотенце, купальник', 'Книга для чтения', 'Крем от солнца'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Statek Relaksacyjny (Relax Boat)',
+        shortDescription: 'Cichy rejs bez głośnej muzyki i animacji, skupiony na kąpielach i relaksie na słońcu.',
+        description: 'Wyjątkowy rejs dla osób ceniących spokój. Pływanie w cichych zatoczkach, słońce i szum fal bez dyskoteki.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Bez głośnej muzyki', 'Długie postoje na kąpiel', 'Spokojna atmosfera', 'Obiad na pokładzie'],
+        included: ['Transfer', 'Rejs', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje'],
+        whatToBring: ['Strój kąpielowy', 'Książka', 'Okulary słoneczne'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Relaxační loď (Relax Boat)',
+        shortDescription: 'Klidná plavba bez hlasité hudby a animací pro opravdový odpočinek a koupání v čistých zátokách.',
+        description: 'Pro milovníky klidu a šumění moře. Žádný hluk, jen slunění a koupání v průzračné vodě.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Bez hluku a animací', 'Klidné zátoky', 'Oběd v ceně'],
+        included: ['Transfer', 'Plavba', 'Oběd'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Plavky a ručník', 'Opalovací krém'],
+        itinerary: []
+      },
+      de: {
+        name: 'Relax Bootstour',
+        shortDescription: 'Ruhige Schifffahrt ohne laute Musik und Animation, purer Genuss von Sonne und azurblauem Meer.',
+        description: 'Für alle, die Ruhe suchen: Entspannter Tagesausflug ohne Partylärm. Schwimmstopps in abgelegenen Buchten und Mittagsessen an Deck.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Keine laute Partymusik', 'Entspannung pur', 'Schwimmen in ruhigen Buchten', 'Mittagessen inklusive'],
+        included: ['Transfer', 'Schifffahrt', 'Mittagessen', 'Versicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Badesachen', 'Sonnencreme', 'Buch zum Lesen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'diving',
+    slug: 'diving',
+    category: 'adventure',
+    price: 30,
+    childPrice: 20,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '09:00 - 15:30 (approx. 6.5h)',
+    pickupType: 'hotel',
+    pickupTime: '08:30 - 09:15',
+    image: 'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 5,
+    translations: {
+      en: {
+        name: 'Diving',
+        shortDescription: 'Scuba diving in Alanya for beginners and certified divers with professional instructors and 2 dives.',
+        description: 'Explore the underwater world of the Mediterranean. Suitable for beginners with full briefing and certified one-on-one guide dives, as well as experienced PADI/CMAS divers. Non-diving family companions can join as boat guests.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['2 underwater dive sessions', 'Professional certified instructor guidance', 'Complete modern dive equipment included', 'Lunch on dive boat'],
+        included: ['Hotel round-trip transfer', 'Full diving gear (wetsuit, tank, regulator, fins, mask)', 'Instruction and guide', 'Lunch onboard', 'Insurance'],
+        excluded: ['Underwater photo and video packages', 'Drinks'],
+        whatToBring: ['Swimwear and towel', 'Dry clothes', 'Certification card if certified'],
+        safetyNotes: 'Minimum age 12 years. Not recommended for pregnant women or individuals with severe respiratory/cardiac conditions.',
+        itinerary: [
+          { time: '09:00', title: 'Marina Departure', description: 'Safety instruction and gear sizing.' },
+          { time: '10:30', title: 'First Dive Session', description: 'Acclimatization and initial dive (up to 5-6 meters for beginners).' },
+          { time: '12:30', title: 'Lunch', description: 'Lunch and surface interval.' },
+          { time: '13:45', title: 'Second Dive Session', description: 'Deep underwater reef exploration.' },
+          { time: '15:30', title: 'Return', description: 'Transfer back to hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Дайвинг (Diving)',
+        shortDescription: 'Подводное погружение с аквалангом в Аланье для новичков и опытных дайверов: 2 погружения с инструктором.',
+        description: 'Откройте для себя подводный мир Средиземного моря. Опытные инструкторы обучат каждого новичка. В программу входят 2 погружения, снаряжение и обед на борту.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['2 погружения с аквалангом', 'Профессиональные русскоязычные инструкторы', 'Полный комплект снаряжения', 'Обед на корабле'],
+        included: ['Трансфер из отеля и обратно', 'Все необходимое снаряжение', 'Инструктаж и сопровождение', 'Обед', 'Страховка'],
+        excluded: ['Подводное фото и видео', 'Напитки'],
+        whatToBring: ['Купальник и полотенце', 'Сухая одежда'],
+        safetyNotes: 'Допускаются лица от 12 лет без тяжелых хронических заболеваний дыхания/сердца.',
+        itinerary: []
+      },
+      pl: {
+        name: 'Nurkowanie (Diving)',
+        shortDescription: 'Nurkowanie ze sprzętem w Alanyi dla początkujących i zaawansowanych. 2 zejścia pod wodę pod okiem instruktora.',
+        description: 'Odkryj podwodne bogactwo Morza Śródziemnego. Profesjonalni instruktorzy zapewniają pełne bezpieczeństwo zarówno debiutantom, jak i posiadaczom certyfikatów.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['2 zejścia pod wodę', 'Kompletny sprzęt nurkowy', 'Instruktor nurkowania', 'Obiad na statku'],
+        included: ['Transfer', 'Sprzęt nurkowy', 'Szkolenie i opieka', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Zdjęcia podwodne', 'Napoje'],
+        whatToBring: ['Ręcznik, strój kąpielowy'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Potápění (Diving)',
+        shortDescription: 'Potápění s přístrojem v Alanyi pro začátečníky i certifikované potápěče. 2 ponory s instruktorem.',
+        description: 'Poznejte podmořský život Středozemního moře s profesionálním potápěčským týmem.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['2 ponory', 'Kompletní výstroj v ceně', 'Profesionální instruktor', 'Oběd na lodi'],
+        included: ['Transfer', 'Kompletní vybavení', 'Instruktáž', 'Oběd'],
+        excluded: ['Podvodní fotografie', 'Nápoje'],
+        whatToBring: ['Plavky a ručník'],
+        itinerary: []
+      },
+      de: {
+        name: 'Tauchen (Diving)',
+        shortDescription: 'Gerätetauchen in Alanya für Anfänger und Fortgeschrittene mit 2 Tauchgängen unter professioneller Anleitung.',
+        description: 'Tauchen Sie ab in die Unterwasserwelt von Alanya. Für Anfänger gibt es eine ausführliche Einweisung und persönliche Begleitung bei 2 separaten Tauchgängen.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['2 Tauchgänge', 'Professionelle Tauchlehrer', 'Komplette Ausrüstung inklusive', 'Mittagessen'],
+        included: ['Hoteltransfer', 'Tauchausrüstung', 'Begleitung & Einweisung', 'Mittagessen', 'Versicherung'],
+        excluded: ['Unterwasserfotos', 'Getränke'],
+        whatToBring: ['Badekleidung, Handtuch'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'turkish-bath-hamam',
+    slug: 'turkish-bath-hamam',
+    category: 'wellness',
+    price: 20,
+    childPrice: 12,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: 'Approx. 2.5 hours',
+    pickupType: 'hotel',
+    pickupTime: 'Flexible morning/afternoon slots (09:00, 11:00, 14:00, 16:00)',
+    image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 6,
+    translations: {
+      en: {
+        name: 'Turkish Bath / Hamam',
+        shortDescription: 'Traditional oriental spa ritual: sauna, steam room, peeling (kese), foam massage, and relaxing oil massage.',
+        description: 'The essential start to any Turkish holiday. Prepare your skin for a smooth, lasting tan through historic Turkish bathing traditions: warm marble stones, invigorating scrub, cloud-soft soap foam, and aromatic massage.',
+        operatingDays: 'Daily (Every hour between 09:00 - 18:00)',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Sauna & steam room warmup', 'Traditional kese scrub peeling', 'Cloud foam bath on warm marble', 'Aromatic essential oil massage (20 min)'],
+        included: ['Hotel pickup and return transfer', 'Sauna and steam room access', 'Kese body scrub', 'Foam massage', 'Relaxing oil massage', 'Turkish tea'],
+        excluded: ['Extra specialized treatments (clay masks, extra massage time)', 'Beverages outside tea'],
+        whatToBring: ['Swimwear', 'Dry change of clothes'],
+        itinerary: [
+          { time: 'Stage 1', title: 'Sauna & Steam', description: 'Opening pores and softening skin.' },
+          { time: 'Stage 2', title: 'Kese Scrubbing', description: 'Removing dead skin cells on warm marble.' },
+          { time: 'Stage 3', title: 'Foam Massage', description: 'Luxurious lather massage.' },
+          { time: 'Stage 4', title: 'Aromatherapy Oil Massage', description: 'Relaxing full body oil massage.' }
+        ]
+      },
+      ru: {
+        name: 'Турецкий хамам (Turkish Bath / Hamam)',
+        shortDescription: 'Традиционный восточный спа-ритуал: сауна, парная, пилинг кесе, пенный массаж и расслабляющий масляный массаж.',
+        description: 'Идеальное начало отдыха в Турции! Подготовьте кожу к идеальному загару. Сауна, разогрев на теплом мраморе, рукавица кесе, пенное облако и классический массаж с натуральными маслами.',
+        operatingDays: 'Ежедневно (гибкое время с 09:00 до 18:00)',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Сауна и паровая комната', 'Пилинг рукавицей кесе', 'Воздушный пенный массаж', 'Массаж с натуральными маслами (20 мин)', 'Турецкий чай'],
+        included: ['Трансфер в обе стороны', 'Сауна и парная', 'Пилинг и пенный массаж', 'Масляный массаж 20 минут', 'Угощение чаем'],
+        excluded: ['Дополнительные маски и спа-процедуры сверх программы'],
+        whatToBring: ['Купальник / плавки'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Łaźnia Turecka (Hamam)',
+        shortDescription: 'Tradycyjny rytuał orientalnego spa: sauna, łaźnia parowa, peeling rękawicą Kese, masaż pianą i masaż olejkami.',
+        description: 'Idealny początek wakacji w Turcji przygotowujący skórę do pięknej opalenizny. Relaks na ciepłym marmurze i odnowa biologiczna.',
+        operatingDays: 'Codziennie (różne godziny)',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Sauna i łaźnia parowa', 'Peeling kese', 'Masaż pianą', 'Masaż relaksacyjny olejkami'],
+        included: ['Transfer z i do hotelu', 'Pakiet zabiegów łaźni', 'Masaż olejkami', 'Herbata'],
+        excluded: ['Dodatkowe zabiegi kosmetyczne'],
+        whatToBring: ['Strój kąpielowy'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Turecké lázně (Hamam)',
+        shortDescription: 'Tradiční orientální rituál: sauna, parní lázeň, peeling rukavicí Kese, pěnová masáž a masáž olejem.',
+        description: 'Dokonalý odpočinek pro tělo i mysl a skvělá příprava pokožky na opálení.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Sauna a pára', 'Peeling', 'Pěnová masáž', 'Masáž olejem'],
+        included: ['Transfer', 'Lázeňský balíček', 'Olejová masáž'],
+        excluded: ['Doplňkové procedury'],
+        whatToBring: ['Plavky'],
+        itinerary: []
+      },
+      de: {
+        name: 'Türkisches Bad (Hamam)',
+        shortDescription: 'Traditionelles orientalisches Wellness-Ritual: Sauna, Dampfbad, Kese-Peeling, Schaummassage und Ölmassage.',
+        description: 'Die perfekte Vorbereitung für eine langanhaltende Bräune: Entspannen Sie auf dem warmen Marmorstein und genießen Sie sanftes Peeling, Schaum und Massage.',
+        operatingDays: 'Täglich flexibel',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Sauna & Dampfbad', 'Traditionelles Kese-Peeling', 'Herrliche Schaummassage', 'Aroma-Ölmassage'],
+        included: ['Hoteltransfer', 'Hamam-Komplettprogramm', 'Ölmassage', 'Türkischer Tee'],
+        excluded: ['Zusatzbehandlungen'],
+        whatToBring: ['Badesachen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'land-of-legends',
+    slug: 'land-of-legends',
+    category: 'family',
+    price: 70,
+    childPrice: 60,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '08:30 - 18:00 (full day)',
+    pickupType: 'hotel',
+    pickupTime: '08:00 - 08:30 depending on hotel',
+    image: 'https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 7,
+    translations: {
+      en: {
+        name: 'The Land of Legends Theme Park',
+        shortDescription: 'Full day at the Turkish Disneyland in Belek: mega roller coasters, massive waterpark, slides, and dolphin show.',
+        description: 'Experience one of Europe’s premier theme parks! Over 40 giant waterslides, wave pools, the Hyper Coaster (62m high, 115 km/h), Typhoon Coaster, dolphin presentations, and vibrant shopping avenue.',
+        operatingDays: 'Tuesday, Thursday, Saturday, Sunday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Hyper Coaster & Typhoon Coaster', 'Over 40 waterslides & pools', 'Dolphin & sea animal shows', 'Fairytale castle & shopping avenue'],
+        included: ['Round-trip transfer from Alanya', 'All-day admission ticket to Aquapark & Theme Park', 'Dolphin show access', 'Insurance'],
+        excluded: ['Food and drinks inside park', 'Fast-track wristbands', 'Dolphin swimming sessions'],
+        whatToBring: ['Swimwear, towel', 'Change of clothes', 'Comfortable footwear', 'Credit card or cash for food (wristband top-up)'],
+        safetyNotes: 'Certain thrill rollercoasters have minimum height requirements (120-130 cm).',
+        itinerary: [
+          { time: '08:15', title: 'Alanya Departure', description: 'Comfortable air-conditioned bus transfer to Belek.' },
+          { time: '10:00', title: 'Park Entry', description: 'Full freedom to explore all rides, slides, and pools.' },
+          { time: '17:00', title: 'Meeting at Main Gate', description: 'Bus departure back to Alanya.' }
+        ]
+      },
+      ru: {
+        name: 'The Land of Legends (Турецкий Диснейленд)',
+        shortDescription: 'Целый день в грандиозном тематическом парке и аквапарке в Белеке: горки, бассейны, американские горки и шоу.',
+        description: 'Самый известный развлекательный комплекс на побережье! Более 40 водных горок, искусственная волна, захватывающие американские горки Hyper Coaster и Typhoon Coaster, шоу дельфинов и сказочный замок.',
+        operatingDays: 'Вторник, Четверг, Суббота, Воскресенье',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Более 40 водных аттракционов', 'Экстремальные американские горки', 'Шоу дельфинов', 'Сказочная территория замка'],
+        included: ['Трансфер из отеля и обратно', 'Входной билет на целый день (аквапарк + лунапарк)', 'Шоу дельфинов', 'Страховка'],
+        excluded: ['Питание и напитки внутри парка', 'Плавание с дельфинами'],
+        whatToBring: ['Купальник, полотенце, солнцезащитный крем'],
+        itinerary: []
+      },
+      pl: {
+        name: 'The Land of Legends (Turecki Disneyland)',
+        shortDescription: 'Całodniowy pobyt w największym parku rozrywki i aquaparku w Turcji: zjeżdżalnie, rollercoastery i pokazy.',
+        description: 'Niezapomniane emocje dla całej rodziny w Belek. Ponad 40 zjeżdżalni, ekstremalny Hyper Coaster, baseny z falami i pokazy delfinów.',
+        operatingDays: 'Wtorek, Czwartek, Sobota, Niedziela',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Rollercoastery i zjeżdżalnie wodne', 'Pokaz delfinów', 'Bajkowy zamek i alejki handlowe'],
+        included: ['Transfer z/do hotelu', 'Bilet wstępu do aquaparku i strefy rozrywki', 'Ubezpieczenie'],
+        excluded: ['Wyżywienie na terenie parku'],
+        whatToBring: ['Strój kąpielowy, ręcznik'],
+        itinerary: []
+      },
+      cs: {
+        name: 'The Land of Legends (Turecký Disneyland)',
+        shortDescription: 'Celodenní zábava v obřím aquaparku a zábavním parku v Beleku. Horská dráha, skluzavky a delfíní show.',
+        description: 'Špičkový zábavní park s desítkami atrakcí a tobogánů pro celou rodinu.',
+        operatingDays: 'Úterý, Čtvrtek, Sobota, Neděle',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Hyper Coaster', 'Desítky tobogánů', 'Delfíní show'],
+        included: ['Transfer', 'Celodenní vstupenka', 'Pojištění'],
+        excluded: ['Jídlo a nápoje v parku'],
+        whatToBring: ['Plavky a ručník'],
+        itinerary: []
+      },
+      de: {
+        name: 'The Land of Legends Erlebnispark',
+        shortDescription: 'Ganztägiger Ausflug ins türkische Disneyland in Belek: Mega-Achterbahnen, Wasserpark, Rutschen und Delfinshow.',
+        description: 'Einer der größten Themenparks Europas: Riesige Achterbahnen, über 40 Wasserrutschen, Wellenbecken, Delfinshow und eine zauberhafte Schlosskulisse.',
+        operatingDays: 'Dienstag, Donnerstag, Samstag, Sonntag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Hyper Coaster & Typhoon Coaster', 'Über 40 Wasserrutschen', 'Delfinshow inklusive'],
+        included: ['Hin- und Rücktransfer', 'Ganztagesticket Themen- & Wasserpark', 'Versicherung'],
+        excluded: ['Verpflegung im Park'],
+        whatToBring: ['Badekleidung, Handtuch'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'land-of-legends-night-show',
+    slug: 'land-of-legends-night-show',
+    category: 'family',
+    price: 18,
+    childPrice: 12,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '18:00 - 23:30 (evening)',
+    pickupType: 'hotel',
+    pickupTime: '17:30 - 18:30 depending on hotel',
+    image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 8,
+    translations: {
+      en: {
+        name: 'Land of Legends Night Show',
+        shortDescription: 'Magical evening experience with singing musical fountains, boat parade on the canal, and illuminated fairytale castle.',
+        description: 'Witness the enchanting nighttime spectacle at Land of Legends Shopping Avenue. Enjoy the illuminated boat parade, synchronized musical fountain choreography, laser light shows, and luxury avenue shopping.',
+        operatingDays: 'Wednesday, Friday, Sunday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Illuminated Venetian boat parade', 'Musical fountain and laser light show', 'Fairytale illuminated castle', 'Free time on luxury shopping avenue'],
+        included: ['Round-trip hotel transfers', 'Access to shopping avenue and public night shows', 'Insurance'],
+        excluded: ['Dinner and drinks', 'Shopping purchases'],
+        whatToBring: ['Camera or smartphone with night mode', 'Light evening jacket'],
+        itinerary: [
+          { time: '18:00', title: 'Hotel Pickup', description: 'Evening transfer to Belek.' },
+          { time: '20:00', title: 'Shopping Avenue Free Time', description: 'Walk through the castle grounds and shops.' },
+          { time: '21:00', title: 'Musical Fountain & Boat Parade', description: 'The famous musical show starts.' },
+          { time: '23:30', title: 'Return', description: 'Back to your hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Вечернее шоу Land of Legends (Night Show)',
+        shortDescription: 'Волшебное вечернее шоу поющих фонтанов, парад лодок по каналу и иллюминация сказочного замка в Белеке.',
+        description: 'Одно из самых красивых вечерних представлений в регионе. Парад сказочных персонажей на лодках, светомузыкальные фонтаны, лазерное шоу и свободное время на улице бутиков.',
+        operatingDays: 'Среда, Пятница, Воскресенье',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Красочный парад лодок', 'Поющие фонтаны и лазеры', 'Подсветка замка', 'Шопинг на улице брендов'],
+        included: ['Трансфер туда и обратно', 'Посещение вечернего шоу', 'Страховка'],
+        excluded: ['Ужин и напитки', 'Покупки'],
+        whatToBring: ['Фотоаппарат / телефон'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Wieczorny Pokaz Land of Legends (Night Show)',
+        shortDescription: 'Magiczny wieczorny spektakl tańczących fontann, parada gondoli na kanale i oświetlony bajkowy zamek.',
+        description: 'Zachwycające nocne widowisko na alei handlowej Land of Legends: światła, muzyka, woda i bajkowa atmosfera.',
+        operatingDays: 'Środa, Piątek, Niedziela',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Parada łodzi', 'Tańczące fontanny', 'Oświetlony zamek', 'Czas wolny na zakupy'],
+        included: ['Transfer w obie strony', 'Wstęp na teren pokazów', 'Ubezpieczenie'],
+        excluded: ['Kolacja i napoje'],
+        whatToBring: ['Aparat'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Večerní show Land of Legends (Night Show)',
+        shortDescription: 'Kouzelná večerní podívaná se zpívajícími fontánami, přehlídkou lodí a nasvíceným pohádkovým hradem.',
+        description: 'Nádherná večerní atmosféra plná světel, hudby a vodní show.',
+        operatingDays: 'Středa, Pátek, Neděle',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Vodní fontány a lasery', 'Paráda lodí', 'Nasvícený zámek'],
+        included: ['Zpáteční transfer', 'Vstup na večerní show', 'Pojištění'],
+        excluded: ['Večeře a nápoje'],
+        whatToBring: ['Fotoaparát'],
+        itinerary: []
+      },
+      de: {
+        name: 'Land of Legends Nachtshow',
+        shortDescription: 'Magische Abendshow mit tanzenden Musikbrunnen, Bootsparade auf dem Kanal und beleuchtetem Märchenschloss.',
+        description: 'Ein farbenfrohes Abendspektakel mit Musikbrunnen, Lasereffekten, Bootsparade und Zeit zum Bummeln auf der Luxus-Shopping-Avenue.',
+        operatingDays: 'Mittwoch, Freitag, Sonntag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Beleuchtete Bootsparade', 'Musikbrunnen & Lasershow', 'Märchenschloss', 'Shopping-Avenue'],
+        included: ['Hin- und Rücktransfer', 'Eintritt zur Abendshow', 'Versicherung'],
+        excluded: ['Abendessen und Getränke'],
+        whatToBring: ['Kamera'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'jeep-safari',
+    slug: 'jeep-safari',
+    category: 'adventure',
+    price: 25,
+    childPrice: 15,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '09:00 - 15:30 (approx. 6.5h)',
+    pickupType: 'hotel',
+    pickupTime: '08:30 - 09:15',
+    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 9,
+    translations: {
+      en: {
+        name: 'Jeep Safari',
+        shortDescription: 'Action-packed open-top 4x4 safari through Taurus mountain trails, Dim Cave, citrus orchards, and lunch at Dim River.',
+        description: 'Ride in open-top Land Rover Defenders into the heights of the Taurus Mountains. Experience fun water fights between jeeps, visit local nomadic villages, explore fruit plantations, and relax with lunch over the running water of the Dim River.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Open-top 4x4 off-road adventure', 'Panoramic Taurus Mountain vistas', 'Fun friendly water fights', 'Floating restaurant lunch on Dim River', 'Dim Cave visit opportunity'],
+        included: ['Hotel round-trip pickup', 'Professional jeep driver and fuel', 'Lunch at Dim River restaurant', 'Full insurance'],
+        excluded: ['Drinks at restaurant', 'Water gun rental (optional)', 'Dim Cave entrance ticket (approx. 2-3 EUR)', 'Photos/video DVD'],
+        whatToBring: ['Comfortable clothing you do not mind getting dusty/wet', 'Sun protection and sunglasses', 'Swimsuit and towel for Dim River dip'],
+        safetyNotes: 'Wear seatbelts when indicated. Not recommended for guests with severe back problems.',
+        itinerary: [
+          { time: '09:00', title: 'Hotel Pickup', description: 'Jeeps arrive at hotels and form convoy.' },
+          { time: '10:00', title: 'Mountain Ascend & Viewpoint', description: 'Off-road trails overlooking Alanya city.' },
+          { time: '11:30', title: 'Dim Cave Stop', description: 'Exploration of ancient stalactites.' },
+          { time: '13:00', title: 'Dim River Lunch', description: 'Dining on floating wooden platforms over cold river water.' },
+          { time: '15:30', title: 'Hotel Return', description: 'Drop-off at hotels.' }
+        ]
+      },
+      ru: {
+        name: 'Джип-сафари (Jeep Safari)',
+        shortDescription: 'Захватывающее сафари на открытых джипах по Таврским горам, горным рекам, плантациям и обед на реке Димчай.',
+        description: 'Самая веселая экскурсия в Аланье! Поездка по горным серпантинам на внедорожниках Land Rover, водные битвы между машинами, фруктовые сады, панорамные виды на город и отдых на топчанах над прохладной рекой Димчай.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Открытые внедорожники 4x4', 'Панорамы Таврских гор', 'Веселые водные битвы', 'Обед на плавучих платформах Димчай'],
+        included: ['Трансфер от отеля и обратно', 'Джип с водителем', 'Обед на реке Димчай', 'Страховка'],
+        excluded: ['Напитки', 'Аренда водных пистолетов', 'Вход в пещеру Дим (по желанию)', 'Фотографии'],
+        whatToBring: ['Удобная одежда (может намокнуть)', 'Купальник и полотенце', 'Солнцезащитные очки'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Jeep Safari w Górach Taurus',
+        shortDescription: 'Pełne emocji safari otwartymi jeepami 4x4 po górach Taurus, bitwy wodne i obiad nad rzeką Dimçay.',
+        description: 'Niezwykła przygoda na bezdrożach. Wspaniałe widoki na Alanyę, plantacje cytrusów, orzeźwiająca kąpiel i lunch na platformach nad rzeką Dim.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Jazda jeepami 4x4 z otwartym dachem', 'Bitwy wodne', 'Panorama gór Taurus', 'Obiad nad rzeką Dimçay'],
+        included: ['Transfer', 'Przejazd jeepami', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje', 'Pistolety na wodę'],
+        whatToBring: ['Wygodne ubrania, ręcznik, strój kąpielowy'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Jeep Safari',
+        shortDescription: 'Dobrodružná jízda otevřenými džípy 4x4 po pohoří Taurus, vodní bitvy a oběd nad řekou Dimčaj.',
+        description: 'Zábavný výlet plný adrenalinu do hor Taurus. Skvělé výhledy, vodní bitvy a relaxace na řece Dim.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Jízda džípy 4x4', 'Vodní bitvy', 'Oběd u řeky Dim'],
+        included: ['Transfer', 'Jízda v džípu', 'Oběd', 'Pojištění'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Oblečení, které se může namočit', 'Ručník'],
+        itinerary: []
+      },
+      de: {
+        name: 'Jeep Safari Taurusgebirge',
+        shortDescription: 'Actionreiche 4x4 Safari mit offenen Jeeps durchs Taurusgebirge, Wasserschlachten und Mittagessen am Dimcay-Fluss.',
+        description: 'Fahrspaß pur mit offenen Geländewagen. Entdecken Sie ursprüngliche Bergdörfer, herrliche Aussichtspunkte und kühlen Sie sich bei einem traditionellen Mittagessen am Fluss Dimçay ab.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Offene 4x4 Jeeps', 'Wasser-Schlachten', 'Aussicht auf Alanya', 'Essen auf schwimmenden Holzflößen'],
+        included: ['Transfer', 'Jeepfahrt mit Fahrer', 'Mittagessen am Dimcay', 'Versicherung'],
+        excluded: ['Getränke', 'Wasserpistolen-Verleih'],
+        whatToBring: ['Bequeme Freizeitkleidung, Handtuch, Badesachen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'quad-safari',
+    slug: 'quad-safari',
+    category: 'adventure',
+    price: 25,
+    childPrice: 15,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: 'Approx. 3 hours (1.5-2h riding)',
+    pickupType: 'hotel',
+    pickupTime: 'Daily slots: 09:00, 14:00, 16:30',
+    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 10,
+    translations: {
+      en: {
+        name: 'Quad Safari',
+        shortDescription: 'Drive an ATV Quad bike along dusty pine forest trails, muddy tracks, and riverbeds in the Taurus mountains.',
+        description: 'Unleash your thrill on powerful quad bikes through mountain terrain. No driver’s license required. After a comprehensive test drive, follow our trail guides through scenic mountain paths, forest dirt roads, and splashes.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Self-drive ATV Quad bike', 'Dusty mountain off-road trails', 'No driving license required', 'Professional safety instructors'],
+        included: ['Hotel transfers', 'ATV Quad bike usage', 'Helmets and safety briefing', 'Instructor guide lead', 'Insurance'],
+        excluded: ['Bandana / dust face scarf (available on site)', 'Dust goggles', 'Drinks', 'Photos'],
+        whatToBring: ['Clothes you do not mind getting dusty and muddy', 'Closed-toe shoes (sneakers)'],
+        safetyNotes: 'Solo drivers must be at least 16 years old. Younger participants ride as passengers behind an adult.',
+        itinerary: [
+          { time: 'Station Arrival', title: 'Safety Briefing & Test Lap', description: 'Learn throttle and brake controls.' },
+          { time: 'Trail Riding', title: 'Mountain Circuit', description: 'Riding through mud, water crossings, and pine trails.' }
+        ]
+      },
+      ru: {
+        name: 'Квадроциклы (Quad Safari)',
+        shortDescription: 'Катание на квадроциклах (ATV) по лесным тропам, пыльным дорогам и горным ручьям в предгорьях Тавра.',
+        description: 'Адреналиновый заезд на мощных квадроциклах! Водительские права не требуются. Инструкторы научат управлению за пару минут, после чего вас ждет захватывающий маршрут по горам и брызгам.',
+        operatingDays: 'Ежедневно (утро и день)',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Самостоятельное вождение ATV', 'Горная трасса с грязью и брызгами', 'Права не нужны', 'Шлемы и экипировка'],
+        included: ['Трансфер из отеля', 'Аренда квадроцикла', 'Шлем и инструктаж', 'Сопровождение гида', 'Страховка'],
+        excluded: ['Бандана от пыли и очки', 'Напитки', 'Фото и видео'],
+        whatToBring: ['Одежда, которую не жалко испачкать', 'Закрытая обувь (кроссовки)'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Quad Safari (ATV)',
+        shortDescription: 'Jazda quadami po leśnych trasach, bezdrożach i górskich strumykach w górach Taurus.',
+        description: 'Dawka adrenaliny i wspaniała zabawa. Nie jest wymagane prawo jazdy — po krótkim szkoleniu ruszasz w trasę z instruktorem.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Samodzielna jazda quadem', 'Terenowe trasy leśne', 'Bez wymaganego prawa jazdy'],
+        included: ['Transfer', 'Wynajem quada', 'Kask i instruktaż', 'Ubezpieczenie'],
+        excluded: ['Chusta/okulary przeciwpyłowe', 'Napoje'],
+        whatToBring: ['Zakryte buty, ubrania na zmianę'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Čtyřkolky (Quad Safari)',
+        shortDescription: 'Jízda na čtyřkolkách po horských lesních stezkách a brodech v pohoří Taurus.',
+        description: 'Adrenalinová projížďka na čtyřkolkách bez nutnosti řidičského průkazu.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Řízení čtyřkolky', 'Přírodní horské tratě', 'Bez nutnosti ŘP'],
+        included: ['Transfer', 'Pronájem čtyřkolky', 'Helma a instruktáž', 'Pojištění'],
+        excluded: ['Šátek proti prachu', 'Nápoje'],
+        whatToBring: ['Pevná obuv, sportovní oblečení'],
+        itinerary: []
+      },
+      de: {
+        name: 'Quad Safari (ATV)',
+        shortDescription: 'Fahrspaß auf ATV-Quads über staubige Pisten, durch Schlammlöcher und Bergwälder des Taurusgebirges.',
+        description: 'Erleben Sie rasante Action auf 4 Rädern. Nach einer Sicherheitseinweisung und Testrunde geht es ab ins Gelände. Kein Führerschein erforderlich.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Selberfahren ohne Führerschein', 'Offroad-Trails & Schlammpassagen', 'Sicherheitsausrüstung inklusive'],
+        included: ['Hoteltransfer', 'Quad-Nutzung', 'Helm und Einweisung', 'Versicherung'],
+        excluded: ['Staubtuch & Brille', 'Getränke'],
+        whatToBring: ['Festes Schuhwerk, alte Kleidung'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'buggy-safari',
+    slug: 'buggy-safari',
+    category: 'adventure',
+    price: 30,
+    childPrice: 18,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: false,
+    active: true,
+    duration: 'Approx. 3 hours (1.5-2h riding)',
+    pickupType: 'hotel',
+    pickupTime: 'Daily slots: 09:00, 14:00, 16:30',
+    image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 11,
+    translations: {
+      en: {
+        name: 'Buggy Safari',
+        shortDescription: 'Off-road 2-seater buggy adventure with roll-cage and steering wheel across mountain trails and water streams.',
+        description: 'For those who prefer a steering wheel and roll cage seating, buggies offer stable yet extreme off-road driving fun through pine forests, puddles, and sandy banks.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['2-seater buggy with roll cage', 'Automated transmission with gas and brake pedals', 'Water puddles and mountain dirt track', 'Great for couples and friends'],
+        included: ['Hotel pickup and drop-off', 'Buggy vehicle', 'Helmets and guide', 'Insurance'],
+        excluded: ['Dust mask / bandana', 'Drinks', 'Photos'],
+        whatToBring: ['Casual clothes suitable for dirt', 'Sport shoes'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Багги-сафари (Buggy Safari)',
+        shortDescription: 'Поездка на двухместных машинках багги с рулем и каркасом безопасности по горному бездорожью.',
+        description: 'Управляйте устойчивым багги с классическим рулем и педалями. Отличная альтернатива квадроциклам для пар и друзей!',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Двухместные багги с каркасом', 'Управление рулем', 'Брызги и грязевые трассы'],
+        included: ['Трансфер', 'Багги', 'Шлемы', 'Страховка'],
+        excluded: ['Банданы от пыли', 'Напитки'],
+        whatToBring: ['Сменная одежда', 'Кроссовки'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Buggy Safari',
+        shortDescription: 'Jazda dwuosobowymi pojazdami buggy z kierownicą i klatką bezpieczeństwa po bezdrożach.',
+        description: 'Wspaniała zabawa dla dwojga. Stabilny pojazd terenowy z kierownicą pozwala na dynamiczną jazdę po błocie i piasku.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Pojazdy buggy 2-osobowe', 'Kierownica i klatka', 'Trasy górskie'],
+        included: ['Transfer', 'Buggy', 'Instruktaż', 'Ubezpieczenie'],
+        excluded: ['Maska przeciwpyłowa', 'Napoje'],
+        whatToBring: ['Sportowe buty'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Buggy Safari',
+        shortDescription: 'Jízda v dvoumístných terénních buginách s volantem a ochranným rámem.',
+        description: 'Zábavné terénní vozítko pro dva, jednoduché ovládání.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Buginy pro 2 osoby', 'Volant a pedály', 'Horský terén'],
+        included: ['Transfer', 'Vozidlo Buggy', 'Pojištění'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Pevná obuv'],
+        itinerary: []
+      },
+      de: {
+        name: 'Buggy Safari',
+        shortDescription: 'Offroad-Fahrt mit 2-Sitzer Buggys mit Überrollkäfig und Lenkrad über Wald- und Schlammpisten.',
+        description: 'Perfekt für Paare und Freunde: Fahren Sie im offenen Buggy mit klassischem Lenkrad durch das Gelände.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['2-Sitzer mit Überrollkäfig', 'Einfaches Fahren mit Lenkrad & Pedalen', 'Offroad-Spaß'],
+        included: ['Transfer', 'Buggy-Fahrzeug', 'Helme', 'Versicherung'],
+        excluded: ['Staubtuch', 'Getränke'],
+        whatToBring: ['Alte Kleidung, Sportschuhe'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'rafting-combo',
+    slug: 'rafting-combo',
+    category: 'adventure',
+    price: 30,
+    childPrice: 18,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '08:00 - 17:00 (approx. 9h)',
+    pickupType: 'hotel',
+    pickupTime: '07:45 - 08:30 depending on hotel',
+    image: 'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1530866495561-507c9faab2ed?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 12,
+    translations: {
+      en: {
+        name: 'Rafting Combo',
+        shortDescription: 'Whitewater rafting down the crystal Köprülü Canyon river (14 km rapids) with lunch and canyon zipline options.',
+        description: 'An adrenaline rush on one of Turkey’s most renowned national park rivers. Navigate 14 kilometers of grade 2-3 rapids in 8-10 person rafts led by professional river guides. Includes riverside lunch and swimming in cold mountain water.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['14 km white-water rafting descent', 'Köprülü Canyon National Park scenery', 'Ancient Roman stone bridge panorama', 'Riverside restaurant lunch'],
+        included: ['Hotel round-trip transfer', 'Rafting boat, paddle, helmet, and lifejacket', 'Professional river guide on raft', 'Lunch at river restaurant', 'Insurance'],
+        excluded: ['Neoprene water shoes (available for purchase/rent)', 'Zipline crossing (optional add-on)', 'Drinks', 'Photos and video'],
+        whatToBring: ['Swimwear and towel', 'Water shoes or secure sandals (no flip-flops)', 'Change of dry clothes'],
+        safetyNotes: 'Non-swimmers can participate safely wearing certified lifejackets.',
+        itinerary: [
+          { time: '08:00', title: 'Pickup from Alanya', description: 'Scenic drive to Köprülü Canyon National Park.' },
+          { time: '10:30', title: 'Basecamp & Gear Up', description: 'Life jackets, helmets, and safety orientation.' },
+          { time: '11:15', title: 'River Descent Part 1', description: 'Navigating rapids and Roman bridge swim stop.' },
+          { time: '13:00', title: 'Lunch', description: 'Grilled chicken, pasta, and salad.' },
+          { time: '14:00', title: 'River Descent Part 2', description: 'Second wave of rapids and body rafting.' },
+          { time: '17:00', title: 'Hotel Return', description: 'Return back to hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Рафтинг Комбо (Rafting Combo)',
+        shortDescription: 'Сплав на рафтах по горной реке в каньоне Кёпрюлю (14 км порогов), древний римский мост и обед на берегу.',
+        description: 'Самая освежающая и популярная экскурсия лета! 14 километров сплава по бирюзовой реке в национальном парке Кёпрюлю. Профессиональные инструкторы, безопасность, вкусный обед и море эмоций.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['14 км сплава по горной реке', 'Каньон Кёпрюлю и древний мост Олук', 'Опытные инструкторы на каждом рафте', 'Обед на берегу реки'],
+        included: ['Трансфер туда и обратно', 'Все снаряжение (жилет, шлем, весло)', 'Инструктор в рафте', 'Обед', 'Страховка'],
+        excluded: ['Резиновые тапочки для воды', 'Зиплайн (по желанию)', 'Напитки', 'Фото и видео'],
+        whatToBring: ['Купальник, полотенце', 'Обувь для воды с фиксацией пятки (не шлепанцы)', 'Сухая одежда'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Rafting Górski (Köprülü Canyon)',
+        shortDescription: 'Spływ pontonami po rzece w kanionie Köprülü (14 km bystrzy), rzymski most kamienny i obiad nad rzeką.',
+        description: 'Orzeźwiająca górska przygoda i wspaniała zabawa zespołowa. Bezpieczny spływ pod opieką doświadczonych sterników.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['14 km trasy spływu pontonowego', 'Kanion Köprülü', 'Kamizelki i kaski w cenie', 'Obiad na brzegu'],
+        included: ['Transfer', 'Sprzęt (kamizelka, kask, wiosło)', 'Instruktor', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Buty do wody', 'Zipline', 'Napoje'],
+        whatToBring: ['Strój kąpielowy, ręcznik, buty do wody'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Rafting v kaňonu Köprülü',
+        shortDescription: 'Sjezd divoké řeky na raftech v národním parku Köprülü (14 km), římský most a oběd u řeky.',
+        description: 'Osvěžující adrenalinový sjezd řeky v nádherném kaňonu s profesionálním instruktorem.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['14 km na raftu', 'Krásná příroda kaňonu', 'Oběd u řeky'],
+        included: ['Transfer', 'Kompletní vodácká výstroj', 'Instruktor', 'Oběd'],
+        excluded: ['Boty do vody', 'Nápoje'],
+        whatToBring: ['Plavky, ručník, boty do vody'],
+        itinerary: []
+      },
+      de: {
+        name: 'Wildwasser Rafting Combo',
+        shortDescription: 'Wildwasser-Rafting auf dem Gebirgsfluss im Köprülü-Canyon (14 km Stromschnellen) mit Mittagessen am Fluss.',
+        description: 'Die perfekte Abkühlung im Sommer: 14 Kilometer Wildwasser-Abenteuer durch den atemberaubenden Köprülü-Canyon Nationalpark. Begleitet von professionellen Guides.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['14 km Wildwasserfahrt', 'Nationalpark Köprülü-Canyon', 'Römerbrücke', 'Mittagessen am Flussufer'],
+        included: ['Hoteltransfer', 'Rafting-Ausrüstung (Helm, Schwimmweste, Paddel)', 'Guide', 'Mittagessen', 'Versicherung'],
+        excluded: ['Wasserschuhe', 'Zipline', 'Getränke'],
+        whatToBring: ['Badesachen, Handtuch, Wasserschuhe mit Fersenriemen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'paragliding',
+    slug: 'paragliding',
+    category: 'adventure',
+    price: 65,
+    childPrice: 65,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: 'Approx. 2 hours (15-25 min flight)',
+    pickupType: 'hotel',
+    pickupTime: 'Hourly slots: 09:00, 11:00, 13:00, 15:00, 17:00',
+    image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 13,
+    translations: {
+      en: {
+        name: 'Paragliding',
+        shortDescription: 'Tandem paragliding flight from 800m Taurus mountain peak with a gentle landing on world-famous Cleopatra Beach.',
+        description: 'Fly like a bird over Alanya! Accompanied by a licensed tandem pilot with thousands of recorded flights, take off from Yassı Tepe (800 meters high) and glide over the turquoise sea, castle, and golden sands of Cleopatra Beach.',
+        operatingDays: 'Daily (weather permitting)',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['800-meter tandem takeoff', 'Breathtaking bird-eye views of Alanya Castle and Mediterranean', 'Landing right on Cleopatra Beach', 'Certified tandem pilot with safety gear'],
+        included: ['Hotel transfer to takeoff hill', 'Complete flight equipment and helmet', 'Certified pilot flight fee', 'National park takeoff fees', 'Insurance'],
+        excluded: ['GoPro photo and video package (arranged directly with pilot)'],
+        whatToBring: ['Sport sneakers (no flip-flops)', 'Sunglasses'],
+        safetyNotes: 'Weight limit: max 110 kg for men, 100 kg for women. Minimum age 5 years.',
+        itinerary: [
+          { time: 'T-30m', title: 'Jeep Ascent', description: 'Drive up to 800m launchpad above Alanya.' },
+          { time: 'T-00m', title: 'Takeoff', description: 'A few steps run into the breeze.' },
+          { time: 'Flight', title: '15-25 Minutes in Air', description: 'Soaring over coastline.' },
+          { time: 'Landing', title: 'Touchdown on Cleopatra Beach', description: 'Gentle landing on the sand.' }
+        ]
+      },
+      ru: {
+        name: 'Параглайдинг (Paragliding)',
+        shortDescription: 'Полет на параплане в тандеме с инструктором с высоты 800 метров с мягкой посадкой на пляж Клеопатры.',
+        description: 'Парите как птица над Аланьей! Прыжок в тандеме с опытным сертифицированным пилотом с вершины горы Яссы-Тепе. Потрясающий вид на море, город и крепость.',
+        operatingDays: 'Ежедневно (при благоприятной погоде)',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Старт с высоты 800 метров', 'Панорама замка и пляжа Клеопатры', 'Посадка прямо на песок пляжа', 'Опытные лицензированные пилоты'],
+        included: ['Трансфер из отеля на гору', 'Оборудование и полет с пилотом', 'Все сборы', 'Страховка'],
+        excluded: ['Фото и видео с камеры GoPro'],
+        whatToBring: ['Спортивная обувь (кроссовки)', 'Солнцезащитные очки'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Paralotnia (Paragliding)',
+        shortDescription: 'Lot paralotnią w tandemie z licencjonowanym pilotem ze szczytu 800 m z lądowaniem na słynnej plaży Kleopatry.',
+        description: 'Podziwiaj Alanyę z lotu ptaka! Bezpieczny lot z instruktorem, który steruje skrzydłem, podczas gdy Ty podziwiasz lazurowe morze i zamek.',
+        operatingDays: 'Codziennie (zależnie od wiatru)',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Start z wysokości 800 m n.p.m.', 'Widok na całą Alanyę i zamek', 'Lądowanie na plaży Kleopatry'],
+        included: ['Transfer na wzgórze startowe', 'Lot w tandemie ze sternikiem', 'Sprzęt', 'Ubezpieczenie'],
+        excluded: ['Pamiątkowe zdjęcia i wideo z GoPro'],
+        whatToBring: ['Buty sportowe, okulary słoneczne'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Paragliding',
+        shortDescription: 'Tandemový let na padáku z výšky 800 m s přistáním na slavné Kleopatřině pláži.',
+        description: 'Úžasný zážitek a pohled na Alanyi z ptačí perspektivy s certifikovaným instruktorem.',
+        operatingDays: 'Denně (dle počasí)',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Let z 800 metrů', 'Výhled na hrad a moře', 'Přistání na pláži Kleopatra'],
+        included: ['Transfer', 'Tandemový let', 'Výstroj', 'Pojištění'],
+        excluded: ['Foto a video'],
+        whatToBring: ['Pevná obuv, sluneční brýle'],
+        itinerary: []
+      },
+      de: {
+        name: 'Paragliding Tandemflug',
+        shortDescription: 'Tandem-Gleitschirmflug vom 800 m hohen Berg mit sanfter Landung am berühmten Kleopatra-Strand.',
+        description: 'Fliegen Sie wie ein Vogel über Alanya! Zusammen mit einem erfahrenen Tandempiloten starten Sie auf 800 Metern Höhe und gleiten über die Küste und das türkisblaue Meer.',
+        operatingDays: 'Täglich (wetterabhängig)',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Start auf 800 m Höhe', 'Vogelperspektive auf Alanya Burg & Meer', 'Landung direkt am Kleopatra-Strand'],
+        included: ['Hoteltransfer zum Startplatz', 'Tandemflug mit Pilot', 'Ausrüstung', 'Versicherung'],
+        excluded: ['GoPro Foto- und Videopaket'],
+        whatToBring: ['Feste Turnschuhe, Sonnenbrille'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'night-safari',
+    slug: 'night-safari',
+    category: 'adventure',
+    price: 30,
+    childPrice: 18,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '18:30 - 23:30 (evening)',
+    pickupType: 'hotel',
+    pickupTime: '18:00 - 18:45',
+    image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 14,
+    translations: {
+      en: {
+        name: 'Night Safari',
+        shortDescription: 'Evening jeep safari adventure featuring sunset panoramic castle views, mountain trails, dinner, and belly dance animation.',
+        description: 'Experience the magic of Alanya after dusk! Watch the fiery Mediterranean sunset over Cleopatra Beach from the castle hills, drive off-road into the twilight Taurus Mountains, and enjoy dinner with live oriental entertainment.',
+        operatingDays: 'Tuesday, Thursday, Saturday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Alanya sunset viewpoint', 'Evening open-top jeep convoy', 'Delicious dinner under starlight', 'Traditional belly dance and animation'],
+        included: ['Hotel transfer', 'Jeep safari', 'Dinner', 'Animation program', 'Insurance'],
+        excluded: ['Drinks', 'Personal expenses'],
+        whatToBring: ['Light jacket or cardigan for mountain evening', 'Camera'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Ночное сафари (Night Safari)',
+        shortDescription: 'Вечернее сафари на джипах: закат на крепости Аланьи, горные тропы, ужин и шоу танец живота.',
+        description: 'Незабываемый вечер в Аланье! Встреча заката на панорамной площадке, ночная поездка по горам на джипах, ужин и колоритное восточное шоу.',
+        operatingDays: 'Вторник, Четверг, Суббота',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Закат с видом на город и море', 'Ночной джип-конвой', 'Ужин с восточной программой'],
+        included: ['Трансфер', 'Джипы', 'Ужин', 'Шоу программа', 'Страховка'],
+        excluded: ['Напитки'],
+        whatToBring: ['Кофта на вечер', 'Камера'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Nocne Safari w Alanyi',
+        shortDescription: 'Wieczorne safari jeepami: zachód słońca przy zamku, górskie trasy, kolacja i taniec brzucha.',
+        description: 'Odkryj Alanyę nocą! Zachód słońca, przejażdżka terenowa po zmroku, kolacja i tradycyjne występy.',
+        operatingDays: 'Wtorek, Czwartek, Sobota',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Zachód słońca nad morzem', 'Kolacja i pokazy tańca brzucha'],
+        included: ['Transfer', 'Safari jeepami', 'Kolacja', 'Pokaz'],
+        excluded: ['Napoje'],
+        whatToBring: ['Lekka kurtka na wieczór'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Noční safari',
+        shortDescription: 'Večerní projížďka džípy: západ slunce nad Alanyí, horské cesty, večeře a břišní tance.',
+        description: 'Romantický a zábavný večer s krásnými výhledy a orientálním programem.',
+        operatingDays: 'Úterý, Čtvrtek, Sobota',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Západ slunce', 'Večeře s programem'],
+        included: ['Transfer', 'Jízda v džípech', 'Večeře', 'Program'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Svetr na večer'],
+        itinerary: []
+      },
+      de: {
+        name: 'Nacht Safari Alanya',
+        shortDescription: 'Abendliche Jeep-Safari mit Sonnenuntergang an der Burg, Bergstraßen, Abendessen und Bauchtanz-Show.',
+        description: 'Erleben Sie Alanya bei Nacht: Sonnenuntergang über dem Meer, Fahrt in die beleuchteten Berge, leckeres Abendessen und traditionelle Folklore.',
+        operatingDays: 'Dienstag, Donnerstag, Samstag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Sonnenuntergang über Alanya', 'Nacht-Safari im Jeep', 'Abendessen & Bauchtanz'],
+        included: ['Hoteltransfer', 'Jeep-Tour', 'Abendessen', 'Showprogramm'],
+        excluded: ['Getränke'],
+        whatToBring: ['Leichte Jacke für den Abend'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'alanya-city-tour',
+    slug: 'alanya-city-tour',
+    category: 'nature',
+    price: 30,
+    childPrice: 18,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '16:30 - 20:30 (approx. 4h)',
+    pickupType: 'hotel',
+    pickupTime: '16:00 - 16:45',
+    image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 15,
+    translations: {
+      en: {
+        name: 'Alanya City Tour',
+        shortDescription: 'Sightseeing tour of Alanya: Cleopatra Beach, Damlataş Cave, Cable Car (Teleferik) to Alanya Castle, and sunset terrace.',
+        description: 'The definitive overview of Alanya’s greatest sights. Ride the panoramic cable car directly up to the 13th-century Seljuk castle, discover the healing microclimate of Damlataş Cave, stroll Cleopatra Beach, and take iconic photos at the "I Love Alanya" terrace.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Cable car (Teleferik) ride to castle', 'Historic Alanya Castle walls and panorama', 'Damlataş Stalactite Cave visit', 'Sunset photo stop at "I Love Alanya" terrace'],
+        included: ['Hotel transfers in open or air-conditioned vehicle', 'Alanya Cable Car round-trip ticket', 'Professional guide', 'Insurance'],
+        excluded: ['Damlataş Cave entrance ticket (approx. 2 EUR)', 'Personal purchases and drinks'],
+        whatToBring: ['Comfortable walking shoes', 'Camera', 'Pocket money for souvenirs'],
+        itinerary: [
+          { time: '16:30', title: 'Pickup & Damlataş Cave', description: 'Visit Cleopatra Beach and famous stalactites.' },
+          { time: '17:30', title: 'Cable Car to Castle', description: 'Scenic ascent and guided walk around ancient fortress.' },
+          { time: '19:30', title: 'Sunset Viewpoint', description: 'Overlook Alanya city lights from the terrace.' }
+        ]
+      },
+      ru: {
+        name: 'Обзорная экскурсия по Аланье (Alanya City Tour)',
+        shortDescription: 'Главные достопримечательности: пляж Клеопатры, пещера Дамлаташ, канатная дорога (Teleferik) на крепость и смотровая площадка.',
+        description: 'Познакомьтесь с Аланьей во всей красе! Вы подниметесь на канатной дороге на древнюю сельджукскую крепость, посетите пещеру Дамлаташ, полюбуетесь пляжем Клеопатры и сделаете потрясающие снимки на закате с надписью I Love Alanya.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Билет на канатную дорогу (Teleferik)', 'Древняя крепость и Красная башня', 'Пещера Дамлаташ', 'Смотровая площадка I Love Alanya'],
+        included: ['Трансфер', 'Билеты на канатную дорогу', 'Услуги гида', 'Страховка'],
+        excluded: ['Вход в пещеру Дамлаташ (~2 евро)', 'Напитки'],
+        whatToBring: ['Удобная обувь для прогулок', 'Фотоаппарат'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Wycieczka po Alanyi (City Tour + Teleferik)',
+        shortDescription: 'Główne atrakcje miasta: plaża Kleopatry, jaskinia Damlataş, kolejka linowa na zamek i punkt widokowy.',
+        description: 'Najlepszy sposób na poznanie Alanyi. Wjazd kolejką linową na szczyt wzgórza zamkowego, jaskinia stalaktytowa i zachód słońca.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Kolejka linowa Teleferik w cenie', 'Zamek w Alanyi', 'Jaskinia Damlataş', 'Napis I Love Alanya'],
+        included: ['Transfer', 'Bilet na kolejkę linową', 'Przewodnik', 'Ubezpieczenie'],
+        excluded: ['Wstęp do jaskini Damlataş'],
+        whatToBring: ['Wygodne buty'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Okružní jízda Alanyí (City Tour)',
+        shortDescription: 'To nejlepší z Alanye: Kleopatřina pláž, jeskyně Damlataş, lanovka na hrad a vyhlídka I Love Alanya.',
+        description: 'Poznejte historii i krásy města. Jízda moderní lanovkou k hradu a nádherný západ slunce.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Jízda lanovkou', 'Hrad Alanya', 'Jeskyně Damlataş'],
+        included: ['Transfer', 'Lístek na lanovku', 'Průvodce', 'Pojištění'],
+        excluded: ['Vstup do jeskyně'],
+        whatToBring: ['Pohodlná obuv'],
+        itinerary: []
+      },
+      de: {
+        name: 'Alanya Stadtrundfahrt mit Seilbahn',
+        shortDescription: 'Highlights der Stadt: Kleopatra-Strand, Damlatas-Höhle, Seilbahnfahrt zur Burg und Aussichtsplattform I Love Alanya.',
+        description: 'Entdecken Sie die Perle der türkischen Riviera: Schweben Sie mit der modernen Seilbahn zur historischen Festung und genießen Sie den Sonnenuntergang über der Bucht.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Seilbahnticket inklusive', 'Burg von Alanya', 'Damlatas-Tropfsteinhöhle', 'Aussichtsterrasse'],
+        included: ['Hoteltransfer', 'Seilbahnticket hin & zurück', 'Reiseleitung', 'Versicherung'],
+        excluded: ['Eintritt Damlatas-Höhle (~2 €)'],
+        whatToBring: ['Bequeme Schuhe, Kamera'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'sapadere-canyon',
+    slug: 'sapadere-canyon',
+    category: 'nature',
+    price: 28,
+    childPrice: 16,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '09:00 - 16:00 (approx. 7h)',
+    pickupType: 'hotel',
+    pickupTime: '08:30 - 09:15',
+    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 16,
+    translations: {
+      en: {
+        name: 'Sapadere Canyon',
+        shortDescription: 'Walk through a breathtaking 750m wooden gorge path, swim in ice-cold waterfalls, and visit traditional mountain silk villages.',
+        description: 'Tucked away in the eastern Taurus Mountains, Sapadere Canyon offers dramatic vertical rock cliffs and natural waterfall pools. Walk comfortably along wooden boardwalks, refresh in icy mountain waters, and explore authentic village life.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Wooden walking trail through the canyon', 'Cascading mountain waterfalls and pools', 'Refreshing swim in mountain water', 'Village lunch included'],
+        included: ['Hotel pickup and return transfer', 'Sapadere Canyon entrance fee', 'Lunch at restaurant', 'Insurance'],
+        excluded: ['Drinks', 'Personal expenses'],
+        whatToBring: ['Swimwear and towel for cold dip', 'Comfortable footwear', 'Camera'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Каньон Сападере (Sapadere Canyon)',
+        shortDescription: 'Прогулка по деревянным мостикам вдоль ущелья, водопады, купание в ледяной горной купели и деревенский обед.',
+        description: 'Один из самых красивых каньонов региона. Длина пешеходного маршрута 750 метров над бурлящей горной рекой. Прохлада в знойный день, водопады и обед в горах.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Деревянные помосты в каньоне', 'Водопады и природные бассейны', 'Прохлада горных ущелий', 'Вкусный обед'],
+        included: ['Трансфер', 'Входной билет в каньон', 'Обед', 'Страховка'],
+        excluded: ['Напитки'],
+        whatToBring: ['Купальник и полотенце', 'Удобная обувь'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Kanion Sapadere',
+        shortDescription: 'Spacer drewnianą kładką w wąwozie, wodospady, orzeźwiająca kąpiel w krystalicznej wodzie i obiad w górach.',
+        description: 'Ucieczka od upału w głąb kanionu Sapadere. Malownicza trasa spacerowa wzdłuż potoku i wspaniała przyroda.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Ścieżka w kanionie', 'Wodospady i naturalne baseny', 'Obiad w cenie'],
+        included: ['Transfer', 'Bilet wstępu do kanionu', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje'],
+        whatToBring: ['Wygodne buty, ręcznik'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Kaňon Sapadere',
+        shortDescription: 'Procházka po dřevěných lávkách v soutěsce, vodopády, koupání v horské vodě a oběd.',
+        description: 'Nádherná přírodní oáza v horách se stezkami podél vodopádů.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Dřevěné lávky kaňonu', 'Horské vodopády', 'Oběd v ceně'],
+        included: ['Transfer', 'Vstupné do kaňonu', 'Oběd'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Pevná obuv, plavky'],
+        itinerary: []
+      },
+      de: {
+        name: 'Sapadere Canyon',
+        shortDescription: 'Spaziergang über Holzstege durch die felsige Schlucht, Wasserfälle, erfrischendes Baden im Gebirgsbecken und Mittagessen.',
+        description: 'Ein Naturparadies im Taurusgebirge: 750 Meter langer Holzsteg durch die spektakuläre Schlucht mit Wasserfällen und kühlen Badebecken.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Holzstege durch die Schlucht', 'Wasserfälle & Gebirgsbecken', 'Mittagessen inklusive'],
+        included: ['Hoteltransfer', 'Eintritt in den Canyon', 'Mittagessen', 'Versicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Bequeme Schuhe, Badesachen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'syedra-gazipasa',
+    slug: 'syedra-gazipasa',
+    category: 'excursions',
+    price: 45,
+    childPrice: 25,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: false,
+    active: true,
+    duration: '08:30 - 16:30 (approx. 8h)',
+    pickupType: 'hotel',
+    pickupTime: '08:00 - 08:45',
+    image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 17,
+    translations: {
+      en: {
+        name: 'Syedra + Gazipaşa Tour',
+        shortDescription: 'Ancient hilltop ruins of Syedra with sea panoramas, banana plantations, and Gazipaşa’s pristine turquoise beaches.',
+        description: 'Discover the hidden treasures of the eastern coastline. Explore the atmospheric ancient Roman city of Syedra overlooking the sea, wander through lush subtropical banana and avocado groves, and swim at untouched Gazipaşa coves.',
+        operatingDays: 'Tuesday, Friday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Ancient city of Syedra ruins', 'Gazipaşa banana and tropical fruit gardens', 'Swim at natural rock pools / quiet beach', 'Authentic local lunch'],
+        included: ['Hotel transfers', 'Guided tour of Syedra', 'Lunch', 'Insurance'],
+        excluded: ['Drinks', 'Entrance tickets if required'],
+        whatToBring: ['Comfortable walking shoes', 'Camera', 'Swimwear'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Сиедра + Газипаша (Syedra + Gazipaşa)',
+        shortDescription: 'Древний город Сиедра на холме, банановые плантации, уединенные бухты Газипаши и обед.',
+        description: 'Уникальный маршрут вдали от толп туристов! Руины древнеримского города Сиедра с невероятным видом на море, плантации экзотических фруктов и купание в Газипаше.',
+        operatingDays: 'Вторник, Пятница',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Руины античной Сиедры', 'Банановые сады Газипаши', 'Купание в чистейших лагунах'],
+        included: ['Трансфер', 'Экскурсия с гидом', 'Обед', 'Страховка'],
+        excluded: ['Напитки'],
+        whatToBring: ['Удобная обувь', 'Купальник'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Starożytna Syedra i Gazipaşa',
+        shortDescription: 'Ruiny antycznego miasta Syedra, plantacje bananów i dziewicze plaże Gazipaşy.',
+        description: 'Nieodkryte zakątki Riwiery Tureckiej. Antyczna historia na wzgórzu i relaks na spokojnych plażach.',
+        operatingDays: 'Wtorek, Piątek',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Antyczne miasto Syedra', 'Plantacje bananów', 'Kąpiel w Gazipaşa'],
+        included: ['Transfer', 'Przewodnik', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje'],
+        whatToBring: ['Wygodne buty'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Syedra + Gazipaşa',
+        shortDescription: 'Antické město Syedra, banánové plantáže a klidné pláže v Gazipaşe.',
+        description: 'Výlet za historií i přírodou na východ od Alanye.',
+        operatingDays: 'Úterý, Pátek',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Antické památky', 'Banánové plantáže', 'Oběd'],
+        included: ['Transfer', 'Průvodce', 'Oběd'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Pohodlná obuv'],
+        itinerary: []
+      },
+      de: {
+        name: 'Syedra & Gazipasa Entdeckertour',
+        shortDescription: 'Antike Ruinenstadt Syedra mit Panoramablick, Bananenplantagen und einsame Buchten von Gazipasa.',
+        description: 'Entdecken Sie die unberührte Ostküste: Die römische Stadt Syedra hoch über dem Meer, tropische Plantagen und idyllische Badebuchten.',
+        operatingDays: 'Dienstag, Freitag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Antike Ruinen von Syedra', 'Bananen- und Avocado-Haine', 'Mittagessen inklusive'],
+        included: ['Hoteltransfer', 'Führung', 'Mittagessen', 'Versicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Feste Schuhe, Badesachen'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'pamukkale',
+    slug: 'pamukkale',
+    category: 'excursions',
+    price: 70,
+    childPrice: 40,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '03:00 - 20:30 (full day excursion)',
+    pickupType: 'hotel',
+    pickupTime: '02:30 - 03:30 (early morning departure)',
+    image: 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 18,
+    translations: {
+      en: {
+        name: 'Pamukkale (Cotton Castle) & Hierapolis',
+        shortDescription: 'UNESCO World Heritage miracle: dazzling white calcium travertines, ancient Roman Hierapolis, and Cleopatra Thermal Pool.',
+        description: 'Witness one of the natural wonders of the world. Walk barefoot on snow-white mineral terraces formed by thermal spring waters, explore the grand Roman amphitheatre and necropolis of Hierapolis, and swim above submerged Roman marble columns in Cleopatra’s Antique Pool.',
+        operatingDays: 'Monday, Wednesday, Saturday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Snow-white calcium travertine terraces', 'Ancient city of Hierapolis & Roman Theatre', 'Cleopatra Thermal Antique Pool opportunity', 'Breakfast and lunch included'],
+        included: ['Comfortable air-conditioned bus transfer', 'Official licensed historian guide', 'Buffet breakfast and lunch', 'Insurance'],
+        excluded: ['Pamukkale & Hierapolis state entrance ticket (payable according to national park tariffs)', 'Cleopatra Pool swim fee', 'Drinks'],
+        whatToBring: ['Passport / ID', 'Swimwear and towel', 'Sun protection', 'Comfortable footwear'],
+        itinerary: [
+          { time: '03:00', title: 'Early Departure', description: 'Pickups from Alanya and drive through scenic Taurus highlands.' },
+          { time: '07:30', title: 'Breakfast Stop', description: 'Mountain buffet breakfast.' },
+          { time: '10:30', title: 'Pamukkale Arrival', description: 'Free time at travertines, Hierapolis, and thermal pool.' },
+          { time: '14:30', title: 'Lunch & Return', description: 'Lunch buffet and scenic return journey.' }
+        ]
+      },
+      ru: {
+        name: 'Памуккале (Pamukkale) и Иераполис',
+        shortDescription: 'Белоснежные травертины из кальция, античный город Иераполис и термальный бассейн Клеопатры (ЮНЕСКО).',
+        description: 'Восьмое чудо света! Белоснежная гора Памуккале с термальными источниками, огромный античный театр Иераполиса и возможность искупаться в омолаживающем бассейне Клеопатры среди древних римских колонн.',
+        operatingDays: 'Понедельник, Среда, Суббота',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Белоснежные террасы Памуккале', 'Античный Иераполис и театр', 'Бассейн Клеопатры', 'Завтрак и обед включены'],
+        included: ['Трансфер на комфортабельном автобусе', 'Русскоязычный лицензированный гид', 'Завтрак и обед', 'Страховка'],
+        excluded: ['Входной билет в музейный комплекс Памуккале', 'Купание в бассейне Клеопатры', 'Напитки'],
+        whatToBring: ['Паспорт / ваучер', 'Купальник, полотенце', 'Удобная обувь'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Pamukkale i Hierapolis',
+        shortDescription: 'Cud natury UNESCO: śnieżnobiałe trawertyny wapienne, antyczne miasto Hierapolis i Basen Kleopatry.',
+        description: 'Niezapomniana wyprawa do jednego z najważniejszych miejsc w Turcji. Kąpiele termalne i antyczna historia.',
+        operatingDays: 'Poniedziałek, Środa, Sobota',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Wapienne tarasy Pamukkale', 'Hierapolis i teatr rzymski', 'Basen Kleopatry', 'Śniadanie i obiad w cenie'],
+        included: ['Transport klimatyzowanym autokarem', 'Polskojęzyczny/licencjonowany przewodnik', 'Śniadanie i obiad', 'Ubezpieczenie'],
+        excluded: ['Bilet wstępu na teren Pamukkale', 'Kąpiel w Basenie Kleopatry', 'Napoje'],
+        whatToBring: ['Paszport, strój kąpielowy, ręcznik'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Pamukkale a Hierapolis',
+        shortDescription: 'Bavlněný hrad UNESCO: bílé travertinové terasy, antické město Hierapolis a Kleopatřin bazén.',
+        description: 'Slavné termální terasy a antické památky. Výlet, který musíte v Turecku zažít.',
+        operatingDays: 'Pondělí, Středa, Sobota',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Travertinové terasy', 'Antické Hierapolis', 'Snídaně a oběd'],
+        included: ['Transfer', 'Průvodce', 'Snídaně a oběd', 'Pojištění'],
+        excluded: ['Vstupenky Pamukkale', 'Koupání v Kleopatřině bazénu', 'Nápoje'],
+        whatToBring: ['Pas, plavky, ručník'],
+        itinerary: []
+      },
+      de: {
+        name: 'Pamukkale & Hierapolis',
+        shortDescription: 'UNESCO-Weltkulturerbe: Schneeweiße Kalksinterterrassen, antike Stadt Hierapolis und Kleopatra-Thermalbad.',
+        description: 'Ein Weltwunder der Natur: Gehen Sie barfuß über die weißen Sinterterrassen, besichtigen Sie das römische Theater und baden Sie im antiken Thermalpool.',
+        operatingDays: 'Montag, Mittwoch, Samstag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Weiße Kalkterrassen', 'Antikes Theater Hierapolis', 'Kleopatra-Pool', 'Frühstück & Mittagessen'],
+        included: ['Klimatisierter Reisebus', 'Lizenzierter Reiseleiter', 'Frühstück und Mittagessen', 'Versicherung'],
+        excluded: ['Eintrittsticket Pamukkale/Hierapolis', 'Schwimmen im Kleopatra-Pool', 'Getränke'],
+        whatToBring: ['Reisepass, Badesachen, Handtuch'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'cappadocia',
+    slug: 'cappadocia',
+    category: 'excursions',
+    price: 50,
+    childPrice: 35,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '2 Days / 1 Night (departure ~03:00)',
+    pickupType: 'hotel',
+    pickupTime: '02:30 - 03:30 on departure morning',
+    image: 'https://images.unsplash.com/photo-1609137144820-215f79be2fc9?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1609137144820-215f79be2fc9?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 19,
+    translations: {
+      en: {
+        name: 'Cappadocia (2 Days / 1 Night)',
+        shortDescription: 'Fairytale valleys, underground cities, rock-cut churches, panoramic sunrise balloons, and hotel overnight included.',
+        description: 'Step into a lunar dreamscape! Visit underground cities, fairy chimneys of Göreme and Devrent Valley, Pigeon Valley, and Uchisar Castle. Includes 4-star hotel overnight, dinners, and breakfast. Hot air balloon flight can be booked on site.',
+        operatingDays: 'Monday, Thursday, Friday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Underground City & Göreme panoramas', 'Fairy Chimneys and rock churches', 'Overnight stay at Cappadocia hotel', 'Sunrise hot-air balloon viewing'],
+        included: ['Round-trip bus transfer', 'Hotel accommodation (1 night)', '1 Dinner & 1 Breakfast', 'Professional guide', 'Insurance'],
+        excluded: ['Hot-air balloon flight ticket (optional)', 'Lunches and drinks', 'Museum entrance fees'],
+        whatToBring: ['Passport', 'Warm jacket for balloon morning', 'Comfortable walking shoes'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Каппадокия 2 Дня / 1 Ночь (Cappadocia)',
+        shortDescription: 'Сказочные долины, подземные города, пещерные церкви, полет воздушных шаров на рассвете и отель включены.',
+        description: 'Путешествие в другое измерение! Долина Любви, Долина Голубей, подземный город, крепость Учхисар и знаменитый парад сотен воздушных шаров на рассвете. Проживание в отеле и питание включены.',
+        operatingDays: 'Понедельник, Четверг, Пятница',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Подземный город и Долина фей', 'Ночевка в отеле в Каппадокии', 'Воздушные шары на рассвете', 'Ужин и завтрак включены'],
+        included: ['Трансфер туда и обратно', 'Проживание в отеле 1 ночь', 'Ужин и завтрак', 'Русский гид', 'Страховка'],
+        excluded: ['Полет на воздушном шаре', 'Обеды и напитки', 'Входные билеты в музеи'],
+        whatToBring: ['Паспорт', 'Теплая куртка для рассвета', 'Удобная обувь'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Kapadocja (2 Dni / 1 Noc)',
+        shortDescription: 'Bajkowa kraina tufowych skał, podziemne miasta, doliny i wschód słońca z setkami balonów. Nocleg w hotelu.',
+        description: 'Jedna z najbardziej niezwykłych krain na Ziemi. Tajemnicze podziemne miasta, Dolina Mnichów i magiczny poranek z balonami.',
+        operatingDays: 'Poniedziałek, Czwartek, Piątek',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Bajkowe kominy i doliny', 'Nocleg w hotelu', 'Poranny spektakl balonów'],
+        included: ['Przejazd autokarem', 'Nocleg w hotelu (1 noc)', 'Śniadanie i obiadokolacja', 'Przewodnik', 'Ubezpieczenie'],
+        excluded: ['Lot balonem', 'Bilety wstępu do muzeów'],
+        whatToBring: ['Paszport, ciepła bluza'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Kappadokie (2 Dny / 1 Noc)',
+        shortDescription: 'Pohádková krajina, podzemní města, skalní kostely, východ slunce s horkovzdušnými balóny. Ubytování v ceně.',
+        description: 'Dvoudenní zájezd do fascinující Kappadokie včetně ubytování.',
+        operatingDays: 'Pondělí, Čtvrtek, Pátek',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Údolí Kappadokie', 'Ubytování v hotelu', 'Pohled na horkovzdušné balóny'],
+        included: ['Transfer', 'Ubytování na 1 noc', 'Polopenze', 'Průvodce'],
+        excluded: ['Let balónem', 'Vstupy'],
+        whatToBring: ['Pas, teplé oblečení na ráno'],
+        itinerary: []
+      },
+      de: {
+        name: 'Kappadokien (2 Tage / 1 Nacht)',
+        shortDescription: 'Märchenhafte Feenkamine, unterirdische Städte, Felsenkirchen und Heißluftballons zum Sonnenaufgang mit Hotelübernachtung.',
+        description: 'Ein unvergesslicher 2-Tages-Ausflug in die faszinierende Mondlandschaft Kappadokiens inklusive Hotelübernachtung und Halbpension.',
+        operatingDays: 'Montag, Donnerstag, Freitag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Unterirdische Stadt & Göreme-Täler', 'Hotelübernachtung mit Halbpension', 'Ballonparade zum Sonnenaufgang'],
+        included: ['Fahrt im Reisebus', '1 Hotelübernachtung', '1x Frühstück & 1x Abendessen', 'Reiseleitung', 'Versicherung'],
+        excluded: ['Heißluftballonfahrt (optional vor Ort)', 'Mittagessen & Getränke'],
+        whatToBring: ['Reisepass, warme Kleidung für die Morgenstunden'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'manavgat-side-aspendos',
+    slug: 'manavgat-side-aspendos',
+    category: 'excursions',
+    price: 50,
+    childPrice: 30,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: true,
+    active: true,
+    duration: '08:30 - 17:30 (approx. 9h)',
+    pickupType: 'hotel',
+    pickupTime: '08:00 - 08:45',
+    image: 'https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 20,
+    translations: {
+      en: {
+        name: 'Manavgat + Side + Aspendos',
+        shortDescription: 'The golden triangle of history: Manavgat Waterfall, Ancient Roman Theatre of Aspendos, and seaside ruins of Side.',
+        description: 'Tour the finest historical monuments of the Mediterranean coast. Marvel at the acoustics of Aspendos Roman Amphitheatre (one of the best preserved in the world), visit the roaring Manavgat Waterfall, and walk through ancient Side to the iconic Apollo Temple by the sea.',
+        operatingDays: 'Tuesday, Friday, Sunday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['World-famous Aspendos Roman Theatre', 'Manavgat River Waterfall park', 'Ancient Side old town & Temple of Apollo', 'Lunch at local restaurant'],
+        included: ['Hotel round-trip transfers', 'Guided tour with professional guide', 'Lunch', 'Insurance'],
+        excluded: ['Aspendos and Manavgat entrance tickets (state tariffs)', 'Drinks'],
+        whatToBring: ['Comfortable walking shoes', 'Hat and sunscreen', 'Camera'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Манавгат + Сиде + Аспендос (Manavgat + Side + Aspendos)',
+        shortDescription: 'Золотой исторический треугольник: водопад Манавгат, античный театр Аспендос и храм Аполлона в Сиде.',
+        description: 'Три жемчужины региона за один день! Идеально сохранившийся римский амфитеатр Аспендос, живописный водопад Манавгат и прогулка по древнему городу Сиде.',
+        operatingDays: 'Вторник, Пятница, Воскресенье',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Римский амфитеатр Аспендос', 'Водопад Манавгат', 'Античный Сиде и храм Аполлона', 'Обед включен'],
+        included: ['Трансфер', 'Экскурсия с гидом', 'Обед', 'Страховка'],
+        excluded: ['Входные билеты в Аспендос и водопад', 'Напитки'],
+        whatToBring: ['Удобная обувь, головной убор'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Manavgat + Side + Aspendos',
+        shortDescription: 'Wodospad Manavgat, najlepiej zachowany teatr rzymski w Aspendos oraz świątynia Apolla w Side.',
+        description: 'Podróż śladami starożytnego Rzymu i pięknej przyrody. Poznaj najsłynniejszy amfiteatr i malownicze Side.',
+        operatingDays: 'Wtorek, Piątek, Niedziela',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Teatr rzymski Aspendos', 'Wodospad Manavgat', 'Antyczne Side', 'Obiad w cenie'],
+        included: ['Transfer', 'Przewodnik', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Bilety wstępu', 'Napoje'],
+        whatToBring: ['Wygodne buty'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Manavgat + Side + Aspendos',
+        shortDescription: 'Vodopád Manavgat, slavné římské divadlo Aspendos a antické město Side u moře.',
+        description: 'Tři skvělé historické i přírodní památky v jednom celodenním výletu.',
+        operatingDays: 'Úterý, Pátek, Neděle',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Divadlo Aspendos', 'Vodopád Manavgat', 'Chrám v Side'],
+        included: ['Transfer', 'Průvodce', 'Oběd'],
+        excluded: ['Vstupné', 'Nápoje'],
+        whatToBring: ['Pohodlná obuv'],
+        itinerary: []
+      },
+      de: {
+        name: 'Manavgat + Side + Aspendos Kulturreise',
+        shortDescription: 'Manavgat-Wasserfall, das besterhaltene römische Theater von Aspendos und die antike Hafenstadt Side.',
+        description: 'Ein grandioser Kulturausflug: Bewundern Sie das antike Theater von Aspendos, erfrischen Sie sich am Wasserfall und schlendern Sie durch die Altstadt von Side zum Apollon-Tempel.',
+        operatingDays: 'Dienstag, Freitag, Sonntag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Römisches Amphitheater Aspendos', 'Manavgat Wasserfall', 'Apollon-Tempel in Side', 'Mittagessen inklusive'],
+        included: ['Hoteltransfer', 'Reiseleitung', 'Mittagessen', 'Versicherung'],
+        excluded: ['Eintrittskarten', 'Getränke'],
+        whatToBring: ['Bequeme Schuhe, Sonnenschutz'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'side-mix-tour',
+    slug: 'side-mix-tour',
+    category: 'excursions',
+    price: 25,
+    childPrice: 15,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: false,
+    popular: false,
+    active: true,
+    duration: '09:00 - 16:30 (approx. 7.5h)',
+    pickupType: 'hotel',
+    pickupTime: '08:15 - 09:00',
+    image: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 21,
+    translations: {
+      en: {
+        name: 'Side Mix Tour',
+        shortDescription: 'Great value combination trip: Manavgat bazaar market, river boat cruise, Side ruins, and village exploration.',
+        description: 'The ultimate sightseeing mix! Experience the vibrant open-air oriental bazaar in Manavgat, sail down the Manavgat River to where freshwater meets the sea, enjoy swimming, and explore the ancient streets of Side.',
+        operatingDays: 'Monday, Thursday',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Manavgat River cruise', 'Manavgat Grand Bazaar shopping time', 'Swim break at river-meets-sea sandbank', 'Ancient Side visit', 'Lunch on boat'],
+        included: ['Hotel transfers', 'River boat cruise', 'Lunch on boat', 'Guide service', 'Insurance'],
+        excluded: ['Drinks', 'Personal shopping'],
+        whatToBring: ['Swimwear and towel', 'Shopping money', 'Sun protection'],
+        itinerary: []
+      },
+      ru: {
+        name: 'Сиде Микс Тур (Side Mix Tour)',
+        shortDescription: 'Выгодный микс-тур: прогулка на кораблике по реке Манавгат, большой восточный базар, античный Сиде и обед.',
+        description: 'Прекрасный комбинированный день: круиз по реке до песчаной косы, где река впадает в море, шопинг на знаменитом восточном базаре Манавгата и прогулка по Сиде.',
+        operatingDays: 'Понедельник, Четверг',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Кораблик по реке Манавгат', 'Купание на песчаной косе', 'Восточный базар', 'Античный Сиде'],
+        included: ['Трансфер', 'Прогулка на кораблике', 'Обед на борту', 'Страховка'],
+        excluded: ['Напитки', 'Покупки на базаре'],
+        whatToBring: ['Купальник, деньги на покупки'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Side Mix Tour (Rzeka i Bazar)',
+        shortDescription: 'Rejs statkiem po rzece Manavgat, słynny turecki bazar, zwiedzanie Side i kąpiel w morzu i rzece.',
+        description: 'Połączenie rejsu rzeką, zakupów na orientalnym bazarze i spaceru po starożytnym Side.',
+        operatingDays: 'Poniedziałek, Czwartek',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Rejs po rzece Manavgat', 'Bazar orientalny', 'Zabytki Side'],
+        included: ['Transfer', 'Rejs statkiem', 'Obiad', 'Ubezpieczenie'],
+        excluded: ['Napoje'],
+        whatToBring: ['Pieniądze na zakupy, strój kąpielowy'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Side Mix Tour',
+        shortDescription: 'Plavba po řece Manavgat, velký bazar, antické Side a oběd na lodi.',
+        description: 'Oblíbený mix nákupů, plavby a historie za výhodnou cenu.',
+        operatingDays: 'Pondělí, Čtvrtek',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Plavba po řece', 'Turecký bazar', 'Antické Side'],
+        included: ['Transfer', 'Plavba', 'Oběd'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Plavky, kapesné'],
+        itinerary: []
+      },
+      de: {
+        name: 'Side Mix Tour (Fluss & Basar)',
+        shortDescription: 'Beliebte Kombination: Bootsfahrt auf dem Manavgat-Fluss, orientalischer Basar, antikes Side und Mittagessen.',
+        description: 'Schifffahrt zur Flussmündung mit Badestopp im Meer und Süßwasser, Zeit zum Feilschen auf dem großen Basar und Rundgang durch Side.',
+        operatingDays: 'Montag, Donnerstag',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Bootsfahrt Manavgat Fluss', 'Großer orientalischer Basar', 'Antikes Side', 'Mittagessen inklusive'],
+        included: ['Hoteltransfer', 'Schifffahrt', 'Mittagessen an Bord', 'Versicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Badesachen, Taschengeld'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'skydiving',
+    slug: 'skydiving',
+    category: 'adventure',
+    price: 650,
+    childPrice: 650,
+    pricingUnit: 'per_package',
+    showFromPrice: false,
+    featured: true,
+    popular: false,
+    active: true,
+    duration: 'Approx. 3-4 hours (skydive package)',
+    pickupType: 'hotel',
+    pickupTime: 'Private coordination via WhatsApp based on airfield flight window',
+    image: 'https://images.unsplash.com/photo-1521673845931-7b0fb2a78dd9?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1521673845931-7b0fb2a78dd9?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 22,
+    translations: {
+      en: {
+        name: 'Skydiving (Tandem Skydive)',
+        shortDescription: 'Ultimate adrenaline tandem skydive jump from 10,000-12,000 feet with professional jumpmaster and certified parachute system.',
+        description: 'The pinnacle of adrenaline! Jump from an aircraft at up to 12,000 feet above the Mediterranean coast. Experience 45 seconds of breathtaking freefall at 200 km/h followed by a peaceful 5-7 minute parachute canopy flight over turquoise waters.',
+        operatingDays: 'Daily (Strictly weather and flight clearance dependent)',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Tandem freefall from 10,000-12,000 ft', 'Speeds reaching 200 km/h (120 mph)', 'Certified international USPA/FAI jumpmasters', 'Unrivaled Mediterranean aerial vista'],
+        included: ['VIP airfield round-trip transfer', 'Aircraft flight to jump altitude', 'Tandem harness, jumpsuit, and altimeter gear', 'Jumpmaster flight fee', 'High-altitude insurance'],
+        excluded: ['Outside camera-flyer video package (can be added on site)'],
+        whatToBring: ['Passport / ID', 'Secure athletic lace-up sneakers', 'Comfortable clothing'],
+        safetyNotes: 'Weight limit: strictly 90 kg max. Minimum age 16 with guardian consent. Zero alcohol policy.',
+        itinerary: [
+          { time: 'Briefing', title: 'Ground School', description: 'Body position and exit briefing with jumpmaster.' },
+          { time: 'Flight', title: 'Ascent to 12,000 ft', description: 'Scenic 20 min flight.' },
+          { time: 'Jump', title: 'Freefall & Canopy', description: 'Pure adrenaline rush and gentle touchdown.' }
+        ]
+      },
+      ru: {
+        name: 'Скайдайвинг (Прыжок с парашютом из самолета)',
+        shortDescription: 'Прыжок с парашютом в тандеме с высоты 3500-4000 метров с борта самолета над средиземноморским побережьем.',
+        description: 'Максимум адреналина в вашей жизни! Прыжок из самолета в тандеме с профессиональным мастером спорта. 45 секунд свободного падения со скоростью 200 км/ч и полет под куполом парашюта.',
+        operatingDays: 'Ежедневно (при разрешении авиадиспетчера и летной погоде)',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Высота 3500-4000 метров', '45 секунд свободного падения', 'Международные сертифицированные тандем-мастера', 'Вид на побережье с высоты птичьего полета'],
+        included: ['Трансфер на аэродром и обратно', 'Полет на самолете на высоту', 'Тандемный прыжок с инструктором', 'Полная экипировка', 'Страховка'],
+        excluded: ['Профессиональная видеосъемка оператором'],
+        whatToBring: ['Паспорт', 'Спортивная обувь со шнурками'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Skoki Spadochronowe (Skydiving)',
+        shortDescription: 'Skok ze spadochronem w tandemie z samolotu z wysokości ok. 3500-4000 metrów nad Morzem Śródziemnym.',
+        description: 'Najwyższy poziom adrenaliny: 45 sekund swobodnego spadania z prędkością 200 km/h z licencjonowanym instruktorem.',
+        operatingDays: 'Codziennie (zależnie od warunków lotniczych)',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Wysokość 3500-4000 m', 'Swobodne spadanie z prędkością 200 km/h', 'Doświadczeni instruktorzy'],
+        included: ['Transfer na lotnisko', 'Lot samolotem', 'Skok w tandemie', 'Sprzęt', 'Ubezpieczenie'],
+        excluded: ['Wideo i zdjęcia'],
+        whatToBring: ['Paszport, wiązane buty sportowe'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Seskok padákem (Skydiving)',
+        shortDescription: 'Tandemový seskok padákem z letadla z výšky 3500-4000 m nad pobřežím.',
+        description: 'Vrcholný adrenalinový zážitek. 45 sekund volného pádu s certifikovaným instruktorem.',
+        operatingDays: 'Denně (dle letových podmínek)',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Seskok z letadla z výšky až 4000 m', 'Volný pád rychlostí 200 km/h'],
+        included: ['Transfer', 'Letadlo', 'Tandemový seskok', 'Vybavení', 'Pojištění'],
+        excluded: ['Videozáznam'],
+        whatToBring: ['Pas, sportovní obuv'],
+        itinerary: []
+      },
+      de: {
+        name: 'Fallschirmspringen (Skydiving)',
+        shortDescription: 'Ultimativer Tandem-Fallschirmsprung aus dem Flugzeug aus 3.500–4.000 Metern Höhe über der Mittelmeerküste.',
+        description: 'Der ultimative Adrenalinkick: 45 Sekunden freier Fall bei 200 km/h, gefolgt von einem sanften Schirmflug über die Küstenlandschaft.',
+        operatingDays: 'Täglich (flugwetterabhängig)',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Absprung aus bis zu 4.000 m Höhe', '45 Sekunden Freifall mit 200 km/h', 'Zertifizierte Jumpmaster'],
+        included: ['Flughafentransfer', 'Flugzeugaufstieg', 'Tandemsprung mit Profi', 'Ausrüstung', 'Versicherung'],
+        excluded: ['Kamera-Flieger Videopaket'],
+        whatToBring: ['Reisepass, feste Sportschuhe mit Schnürung'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'sunset-boat-tour',
+    slug: 'sunset-boat-tour',
+    category: 'boat',
+    price: 18,
+    childPrice: 10,
+    pricingUnit: 'per_person',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: '17:00 - 20:30 (approx. 3.5h)',
+    pickupType: 'hotel',
+    pickupTime: '16:00 - 16:45',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 23,
+    translations: {
+      en: {
+        name: 'Sunset Boat Tour',
+        shortDescription: 'Romantic golden hour sailing around Alanya peninsula with sunset swimming, dinner, and castle views.',
+        description: 'Watch the sun sink into the glittering Mediterranean horizon. Sail around the castle cliff during the golden hour, take a warm evening swim in the open sea, and enjoy freshly grilled dinner on deck as the city lights turn on.',
+        operatingDays: 'Daily',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time.',
+        highlights: ['Golden hour Mediterranean sunset', 'Swimming in twilight warm waters', 'Alanya Castle illuminated at dusk', 'Dinner on boat included'],
+        included: ['Hotel round-trip transfer', 'Sunset cruise', 'Dinner onboard', 'Insurance'],
+        excluded: ['Beverages', 'Personal expenses'],
+        whatToBring: ['Swimwear and towel', 'Camera for sunset portraits', 'Light jacket for after-dark breeze'],
+        itinerary: [
+          { time: '16:30', title: 'Pickup from Hotel', description: 'Transfer to harbour.' },
+          { time: '17:15', title: 'Harbour Departure', description: 'Cruise past the Red Tower.' },
+          { time: '18:45', title: 'Sunset Swim & Dinner', description: 'Open water swim and dinner on deck.' },
+          { time: '20:30', title: 'Return', description: 'Transfer back to hotel.' }
+        ]
+      },
+      ru: {
+        name: 'Морская прогулка на закате (Sunset Boat Tour)',
+        shortDescription: 'Романтический круиз на закате вокруг мыса Аланьи, вечернее купание в теплом море и ужин на борту.',
+        description: 'Самое красивое время на море! Полюбуйтесь золотым закатом на фоне древней крепости, искупайтесь в теплых вечерних волнах и насладитесь ужином на борту.',
+        operatingDays: 'Ежедневно',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии.',
+        highlights: ['Закат солнца в открытом море', 'Вечернее купание', 'Огни ночной Аланьи с моря', 'Ужин на борту'],
+        included: ['Трансфер туда и обратно', 'Морская прогулка', 'Ужин на корабле', 'Страховка'],
+        excluded: ['Напитки'],
+        whatToBring: ['Купальник и полотенце', 'Камера для красивых фото'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Romantyczny Rejs o Zachodzie Słońca',
+        shortDescription: 'Zachód słońca na morzu wokół półwyspu Alanyi, kąpiel o zmierzchu, kolacja na statku i widok na zamek.',
+        description: 'Czarujący rejs w blasku zachodzącego słońca. Ciepła woda, nastrojowa muzyka i kolacja na pokładzie.',
+        operatingDays: 'Codziennie',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Zachód słońca nad morzem', 'Kąpiel o zmierzchu', 'Kolacja w cenie'],
+        included: ['Transfer', 'Rejs statkiem', 'Kolacja', 'Ubezpieczenie'],
+        excluded: ['Napoje'],
+        whatToBring: ['Strój kąpielowy, aparat'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Plavba při západu slunce (Sunset Boat Tour)',
+        shortDescription: 'Romantická plavba při západu slunce kolem hradu Alanya, večerní koupání a večeře na lodi.',
+        description: 'Krásný večer na moři s večeří a sledováním západu slunce.',
+        operatingDays: 'Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Západ slunce na moři', 'Večerní koupání', 'Večeře na lodi'],
+        included: ['Transfer', 'Plavba', 'Večeře', 'Pojištění'],
+        excluded: ['Nápoje'],
+        whatToBring: ['Plavky a ručník'],
+        itinerary: []
+      },
+      de: {
+        name: 'Sonnenuntergangs-Bootstour',
+        shortDescription: 'Romantische Schifffahrt im Abendrot um die Halbinsel von Alanya mit Abendschwimmen, Abendessen und Burgblick.',
+        description: 'Genießen Sie die goldene Stunde auf See: Erleben Sie den Sonnenuntergang über dem Mittelmeer, schwimmen Sie im warmen Wasser und speisen Sie an Deck.',
+        operatingDays: 'Täglich',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['Sonnenuntergang auf See', 'Abendliches Baden', 'Beleuchtete Burgkulisse', 'Abendessen an Bord'],
+        included: ['Hoteltransfer', 'Schifffahrt', 'Abendessen an Bord', 'Versicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Badesachen, Handtuch, Kamera'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'vip-yacht',
+    slug: 'vip-yacht',
+    category: 'boat',
+    price: 400,
+    childPrice: 0,
+    pricingUnit: 'per_yacht',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: 'Customizable (Standard 4 hours private charter)',
+    pickupType: 'both',
+    pickupTime: 'Flexible slots (Morning 09:30-13:30, Afternoon 14:30-18:30, Sunset 18:30-22:00)',
+    meetingPointAddress: 'Alanya Harbour VIP Marina, İskele Cad., Alanya',
+    image: 'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 24,
+    translations: {
+      en: {
+        name: 'VIP Private Yacht',
+        shortDescription: 'Exclusive private luxury motor yacht charter for your family or friends (up to 10-12 guests) with captain, crew, and fresh gourmet meal.',
+        description: 'The ultimate luxury experience in Alanya. Rent your own private yacht with dedicated captain and crew. Choose your own swimming spots around the sea caves, enjoy music via Bluetooth sound system, and savor freshly prepared grilled sea bass or chicken on deck.',
+        operatingDays: 'Daily upon private reservation',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time. (Marina meeting is also available upon request).',
+        highlights: ['100% private yacht charter for your group', 'Customizable route and swimming stops', 'Dedicated private captain & service crew', 'Freshly prepared Mediterranean lunch or dinner included', 'Bluetooth sound system & sunbeds'],
+        included: ['VIP round-trip hotel transfer', 'Private yacht charter (4 hours)', 'Captain, sailor, and fuel', 'Gourmet meal (choice of fish, chicken, meatballs, pasta, fresh salads)', 'Soft drinks & fruits', 'Passenger insurance'],
+        excluded: ['Imported alcoholic beverages (can be brought onboard or ordered in advance)'],
+        whatToBring: ['Swimwear and towel', 'Sun protection', 'Favorite playlist (Bluetooth available)'],
+        itinerary: [
+          { time: 'Slot Start', title: 'VIP Boarding', description: 'Welcome drink and captain briefing.' },
+          { time: 'Cruise', title: 'Custom Route', description: 'Swimming at secluded coves and cave views.' },
+          { time: 'Dining', title: 'Private Meal on Deck', description: 'Freshly grilled lunch or sunset dinner.' }
+        ]
+      },
+      ru: {
+        name: 'VIP Аренда яхты (VIP Yacht)',
+        shortDescription: 'Индивидуальная аренда роскошной моторной яхты для вашей семьи или компании (до 10-12 человек) с капитаном и изысканным обедом.',
+        description: 'Максимальный комфорт и приватность! Только вы, ваши близкие и море. Персональный капитан, остановки для купания в любых красивых бухтах, музыка по Bluetooth и вкуснейший обед из морепродуктов или мяса на гриле.',
+        operatingDays: 'Ежедневно по предварительному бронированию',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала экскурсии. (Также возможна встреча в марине).',
+        highlights: ['Полностью индивидуальная яхта для вашей компании', 'Индивидуальный маршрут и купание', 'Персональный капитан и команда', 'Вкусный обед или ужин от шефа', 'Безалкогольные напитки и фрукты'],
+        included: ['VIP трансфер на автомобиле Mercedes Vito', 'Аренда яхты (4 часа) с топливом', 'Капитан и экипаж', 'Обед или ужин (рыба/мясо/паста/салаты)', 'Безалкогольные напитки', 'Страховка'],
+        excluded: ['Элитный алкоголь (можно взять с собой)'],
+        whatToBring: ['Купальник, полотенце, любимая музыка'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Wynajem Prywatnego Jachtu VIP (VIP Yacht)',
+        shortDescription: 'Luksusowy prywatny jacht motorowy na wyłączność dla Twojej rodziny lub znajomych (do 10-12 osób) z kapitanem i obiadem.',
+        description: 'Ekskluzywny relaks na lazurowych wodach Alanyi. Brak obcych turystów, własna trasa, kąpiele w zacisznych zatokach i wyśmienity posiłek serwowany na pokładzie.',
+        operatingDays: 'Codziennie po wcześniejszej rezerwacji',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed rozpoczęciem wycieczki.',
+        highlights: ['Jacht na wyłączność', 'Indywidualna trasa', 'Kapitan i załoga', 'Wykwintny posiłek w cenie'],
+        included: ['Transfer VIP', 'Wynajem jachtu na 4 godziny', 'Kapitan i paliwo', 'Obiad lub kolacja', 'Napoje bezalkoholowe'],
+        excluded: ['Alkohol'],
+        whatToBring: ['Strój kąpielowy, okulary'],
+        itinerary: []
+      },
+      cs: {
+        name: 'Pronájem privátní VIP jachty',
+        shortDescription: 'Luxusní soukromá motorová jachta pouze pro vaši rodinu či skupinu (až 10-12 osob) s kapitánem a obědem.',
+        description: 'Maximální soukromí a luxus na moři. Individuální trasa plavby a gurmánský oběd.',
+        operatingDays: 'Denně na rezervaci',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem výletu.',
+        highlights: ['Privátní jachta pro vaši skupinu', 'Vlastní trasa', 'Kapitán a posádka', 'Oběd v ceně'],
+        included: ['VIP transfer', 'Pronájem jachty na 4 hodiny', 'Kapitán a palivo', 'Oběd nebo večeře'],
+        excluded: ['Alkoholické nápoje'],
+        whatToBring: ['Plavky, ručník'],
+        itinerary: []
+      },
+      de: {
+        name: 'VIP Private Luxusyacht',
+        shortDescription: 'Exklusiver privater Motoryacht-Charter für Ihre Familie oder Gruppe (bis zu 10-12 Personen) mit Kapitän, Crew und Gourmet-Menü.',
+        description: 'Höchster Komfort und Privatsphäre: Chartern Sie Ihre persönliche Luxusyacht. Individuelle Badestopps, Bluetooth-Soundsystem und frischer Fisch oder Fleisch vom Grill an Deck.',
+        operatingDays: 'Täglich auf private Anfrage',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Tourbeginn draußen am Sicherheitstor.',
+        highlights: ['100 % private Yacht nur für Ihre Gruppe', 'Individuelle Route & Badestopps', 'Eigener Kapitän & Crew', 'Frisch zubereitetes Gourmet-Essen', 'Alkoholfreie Getränke inklusive'],
+        included: ['VIP-Transfer ab/bis Hotel', 'Yachtcharter (4 Stunden) inkl. Treibstoff', 'Kapitän & Crew', 'Gourmet-Mittag- oder Abendessen', 'Alkoholfreie Getränke & Obst', 'Versicherung'],
+        excluded: ['Alkoholische Getränke (dürfen mitgebracht werden)'],
+        whatToBring: ['Badekleidung, Handtuch, Lieblingsmusik'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'antalya-airport-transfer',
+    slug: 'antalya-airport-transfer',
+    category: 'transfer',
+    price: 80,
+    childPrice: 0,
+    pricingUnit: 'per_vehicle',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: 'Approx. 1h 45m - 2h (Direct VIP transfer)',
+    pickupType: 'both',
+    pickupTime: '24/7 Coordinated to your flight arrival or departure time',
+    meetingPointAddress: 'Antalya Airport (AYT) Terminal 1, Terminal 2 or Domestic Exit',
+    image: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 25,
+    translations: {
+      en: {
+        name: 'Antalya Airport VIP Transfer (AYT <-> Alanya)',
+        shortDescription: 'Private VIP Mercedes Vito transfer between Antalya Airport (AYT) and all Alanya hotels/villas. Fixed price per vehicle (up to 8 passengers).',
+        description: 'Enjoy a seamless, air-conditioned VIP transfer between Antalya International Airport (AYT) and your hotel or residence in Alanya, Mahmutlar, Konaklı, Avsallar, or Okurcalar. Dedicated Mercedes Vito vehicle exclusively for your party, flight tracking for delays, luggage assistance, and meet & greet service.',
+        operatingDays: '24/7 Daily (All Flights)',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time. (For airport pickups, your driver waits outside the terminal exit holding a sign with your name).',
+        highlights: ['Private VIP Mercedes Vito (up to 8 seats)', 'Fixed price €80 per vehicle (no hidden night charges)', 'Live flight tracking with free delay waiting time', 'Direct door-to-door transfer without extra hotel stops', 'Child car seats and boosters upon request'],
+        included: ['Private Mercedes Vito VIP vehicle & driver', 'Fuel, highway and airport parking fees', 'Terminal exit Meet & Greet with name board', 'Flight delay monitoring', 'Full passenger insurance'],
+        excluded: ['Personal beverages or snacks during travel'],
+        whatToBring: ['Flight number and arrival/departure schedule', 'Hotel name and address in Alanya'],
+        safetyNotes: 'Fully licensed and insured commercial tourism transfer vehicles (TÜRSAB licensed).',
+        itinerary: [
+          { time: 'Airport Arrival', title: 'Meet & Greet', description: 'Driver greets you at the terminal exit with your name on a signboard.' },
+          { time: 'Direct Drive', title: 'Scenic Highway', description: 'Comfortable air-conditioned private drive along the Mediterranean highway.' },
+          { time: 'Hotel Drop-off', title: 'Doorstep Arrival', description: 'Direct drop-off at your hotel reception or villa security gate.' }
+        ]
+      },
+      ru: {
+        name: 'VIP Трансфер Аэропорт Анталья (AYT <-> Аланья)',
+        shortDescription: 'Индивидуальный VIP трансфер на Mercedes Vito между аэропортом Антальи и отелями Аланьи. Фиксированная цена за машину (до 8 чел).',
+        description: 'Комфортный индивидуальный трансфер на Mercedes Vito из аэропорта Антальи в любой отель или апартаменты Аланьи (Махмутлар, Клеопатра, Конаклы, Авсаллар). Без попутчиков, встреча с табличкой, отслеживание рейса.',
+        operatingDays: '24/7 Круглосуточно (под все рейсы)',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала трансфера. (В аэропорту водитель встречает на выходе из терминала с табличкой).',
+        highlights: ['Индивидуальный Mercedes Vito до 8 пассажиров', 'Фиксированная цена 80 евро за автомобиль', 'Встреча с табличкой на выходе из терминала', 'Отслеживание задержек рейсов онлайн', 'Детские кресла по запросу'],
+        included: ['Индивидуальный автомобиль с водителем', 'Топливо и все дорожные сборы', 'Встреча с именной табличкой', 'Страховка пассажиров'],
+        excluded: ['Личные напитки'],
+        whatToBring: ['Номер рейса и время прилета/вылета', 'Название отеля'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Transfer VIP Lotnisko Antalya (AYT <-> Alanya)',
+        shortDescription: 'Prywatny transfer VIP Mercedes Vito między lotniskiem w Antalyi a Alanyą. Stała cena za samochód (do 8 osób).',
+        description: 'Komfortowy, bezpośredni transfer bez obcych pasażerów z lotniska Antalya do Twojego hotelu w Alanyi. Kierowca czeka z tabliczką imienną i monitoruje ewentualne opóźnienia lotów.',
+        operatingDays: '24/7 Całodobowo',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed czasem transferu. (Na lotnisku kierowca czeka przy wyjściu z terminala z tabliczką z nazwiskiem).',
+        highlights: ['Prywatny Mercedes Vito (do 8 miejsc)', 'Stała cena 80 € za pojazd', 'Śledzenie opóźnień lotów', 'Bezpośredni dojazd bez postojów w innych hotelach'],
+        included: ['Prywatny pojazd VIP z kierowcą', 'Opłaty drogowe i paliwo', 'Powitanie na lotnisku z tabliczką', 'Ubezpieczenie'],
+        excluded: ['Wydatki osobiste'],
+        whatToBring: ['Numer lotu', 'Nazwa hotelu'],
+        itinerary: []
+      },
+      cs: {
+        name: 'VIP Transfer Letiště Antalya (AYT <-> Alanya)',
+        shortDescription: 'Privátní transfer vozem Mercedes Vito mezi letištěm Antalya a Alanyí. Pevná cena za vozidlo (až 8 osob).',
+        description: 'Rychlý a pohodlný soukromý transfer bez zastávek u cizích hotelů. Vyzvednutí s cedulkou se jménem přímo na letišti.',
+        operatingDays: '24/7 Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem transferu. (Na letišti čeká řidič s cedulkou).',
+        highlights: ['Privátní Mercedes Vito pro vaši rodinu', 'Pevná cena 80 € za auto', 'Sledování příletů', 'Dětská sedačka na přání'],
+        included: ['Vozidlo s řidičem', 'Poplatky a palivo', 'Uvítání s cedulkou', 'Pojištění'],
+        excluded: ['Osobní výdaje'],
+        whatToBring: ['Číslo letu a hotel'],
+        itinerary: []
+      },
+      de: {
+        name: 'VIP Transfer Flughafen Antalya (AYT <-> Alanya)',
+        shortDescription: 'Privater VIP Mercedes Vito Transfer zwischen Flughafen Antalya (AYT) und Alanya. Fester Preis pro Fahrzeug (bis zu 8 Personen).',
+        description: 'Bequemer und stressfreier Einzeltarif ohne Sammelbus-Wartezeiten: Ihr Fahrer erwartet Sie mit Namensschild am Ausgang des Terminals und bringt Sie direkt zu Ihrem Hotel in Alanya.',
+        operatingDays: '24/7 Täglich (zu jedem Flug)',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Transferbeginn draußen am Sicherheitstor. (Am Flughafen erwartet Sie der Fahrer am Terminalausgang mit Namensschild).',
+        highlights: ['Privater Mercedes Vito für bis zu 8 Personen', 'Fester Preis 80 € pro Fahrzeug', 'Flugüberwachung bei Verspätungen', 'Direkte Fahrt ohne Zwischenstopps'],
+        included: ['Privates VIP-Fahrzeug mit Fahrer', 'Treibstoff & Parkgebühren', 'Meet & Greet mit Namensschild', 'Passagierversicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Flugnummer und Hotelname'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  },
+  {
+    id: 'gazipasa-airport-transfer',
+    slug: 'gazipasa-airport-transfer',
+    category: 'transfer',
+    price: 45,
+    childPrice: 0,
+    pricingUnit: 'per_vehicle',
+    showFromPrice: false,
+    featured: true,
+    popular: true,
+    active: true,
+    duration: 'Approx. 35 - 45 min (Direct VIP transfer)',
+    pickupType: 'both',
+    pickupTime: '24/7 Coordinated to your flight arrival or departure time',
+    meetingPointAddress: 'Gazipaşa-Alanya Airport (GZP) Exit Gate',
+    image: 'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
+    gallery: [
+      'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1200&q=80'
+    ],
+    order: 26,
+    translations: {
+      en: {
+        name: 'Gazipaşa Airport VIP Transfer (GZP <-> Alanya)',
+        shortDescription: 'Direct private VIP transfer between Gazipaşa-Alanya Airport (GZP) and your hotel. Fixed price €45 per vehicle (up to 8 passengers).',
+        description: 'The quickest way between Gazipaşa Airport and your Alanya resort. Only 35-45 minutes drive in a private air-conditioned VIP Mercedes Vito. Meet & greet with name sign at the exit gate, luggage help, and live flight tracking included.',
+        operatingDays: '24/7 Daily (All Flights)',
+        pickupInstructions: 'Please wait outside at the security gate 10 minutes before your tour time. (For airport pickups, your driver waits outside the terminal exit holding a sign with your name).',
+        highlights: ['Short 35-45 minute direct transfer', 'Fixed price €45 per vehicle (up to 8 passengers)', 'Meet & Greet at terminal exit', 'No waiting for other passengers or shared buses', 'Child safety seats available upon request'],
+        included: ['Private VIP vehicle and driver', 'Fuel and airport parking fees', 'Meet & Greet with name board', 'Luggage assistance', 'Passenger insurance'],
+        excluded: ['Personal refreshments'],
+        whatToBring: ['Flight number and arrival/departure time', 'Destination hotel in Alanya'],
+        safetyNotes: 'Licensed commercial tourism vehicles with professional chauffeurs.',
+        itinerary: [
+          { time: 'Airport Exit', title: 'Driver Greeting', description: 'Meet your private chauffeur holding your name sign at the exit.' },
+          { time: 'Coastline Drive', title: 'Quick Transfer', description: 'Fast 35-45 min transfer along the eastern Alanya coast.' },
+          { time: 'Hotel Arrival', title: 'Doorstep Drop-off', description: 'Direct drop-off at your hotel reception or security gate.' }
+        ]
+      },
+      ru: {
+        name: 'VIP Трансфер Аэропорт Газипаша (GZP <-> Аланья)',
+        shortDescription: 'Быстрый индивидуальный VIP трансфер между аэропортом Газипаша и отелями Аланьи. Фиксированная цена 45 евро за авто (до 8 чел).',
+        description: 'Самый быстрый и удобный способ добраться из аэропорта Газипаша-Аланья до отеля. Всего 35-45 минут в пути на комфортабельном автомобиле Mercedes Vito без лишних остановок.',
+        operatingDays: '24/7 Круглосуточно (под все рейсы)',
+        pickupInstructions: 'Пожалуйста, ожидайте снаружи у ворот охраны за 10 минут до начала трансфера. (В аэропорту водитель встречает с табличкой на выходе).',
+        highlights: ['Быстрая поездка 35-45 минут', 'Фиксированная цена 45 евро за машину', 'Индивидуальный автомобиль без попутчиков', 'Встреча с табличкой на выходе', 'Детские кресла по запросу'],
+        included: ['Индивидуальное авто с водителем', 'Топливо и сборы', 'Встреча с табличкой', 'Страховка'],
+        excluded: ['Личные расходы'],
+        whatToBring: ['Номер рейса и время прилета'],
+        itinerary: []
+      },
+      pl: {
+        name: 'Transfer VIP Lotnisko Gazipaşa (GZP <-> Alanya)',
+        shortDescription: 'Szybki prywatny transfer VIP Mercedes Vito między lotniskiem Gazipaşa a Alanyą. Stała cena 45 € za pojazd (do 8 osób).',
+        description: 'Bezpośredni transfer w zaledwie 35-45 minut z lotniska Gazipaşa prosto do Twojego hotelu w Alanyi. Kierowca oczekuje z tabliczką i pomaga z bagażami.',
+        operatingDays: '24/7 Całodobowo',
+        pickupInstructions: 'Prosimy o oczekiwanie na zewnątrz przy bramie ochrony 10 minut przed czasem transferu. (Na lotnisku kierowca czeka przy wyjściu z tabliczką).',
+        highlights: ['Krótki czas przejazdu 35-45 min', 'Stała cena 45 € za całe auto', 'Powitanie z tabliczką', 'Brak innych pasażerów'],
+        included: ['Prywatny pojazd z kierowcą', 'Paliwo i opłaty', 'Pomoc z bagażem', 'Ubezpieczenie'],
+        excluded: ['Wydatki osobiste'],
+        whatToBring: ['Numer lotu'],
+        itinerary: []
+      },
+      cs: {
+        name: 'VIP Transfer Letiště Gazipaşa (GZP <-> Alanya)',
+        shortDescription: 'Rychlý privátní transfer z letiště Gazipaşa do Alanye. Pevná cena 45 € za auto (až 8 osob).',
+        description: 'Pouze 35-45 minut jízdy bez čekání na ostatní turisty. Řidič vás vyzvedne s cedulkou u východu z terminálu.',
+        operatingDays: '24/7 Denně',
+        pickupInstructions: 'Prosím, vyčkejte venku u bezpečnostní brány 10 minut před časem transferu. (Na letišti čeká řidič s cedulkou).',
+        highlights: ['Rychlá cesta cca 40 minut', 'Pevná cena 45 € za auto', 'Uvítání s cedulkou'],
+        included: ['Privátní auto s řidičem', 'Poplatky a palivo', 'Pojištění'],
+        excluded: ['Osobní výdaje'],
+        whatToBring: ['Číslo letu'],
+        itinerary: []
+      },
+      de: {
+        name: 'VIP Transfer Flughafen Gazipasa (GZP <-> Alanya)',
+        shortDescription: 'Schneller privater VIP Transfer zwischen Flughafen Gazipasa (GZP) und Alanya. Fester Preis 45 € pro Fahrzeug (bis zu 8 Personen).',
+        description: 'In nur 35-45 Minuten direkt in Ihr Hotel: Privater Mercedes Vito Transfer ab Flughafen Gazipasa mit Namensschild-Abholung am Ausgang.',
+        operatingDays: '24/7 Täglich (zu jedem Flug)',
+        pickupInstructions: 'Bitte warten Sie 10 Minuten vor Transferbeginn draußen am Sicherheitstor. (Am Flughafen erwartet Sie der Fahrer am Terminalausgang mit Namensschild).',
+        highlights: ['Nur 35-45 Minuten Fahrzeit', 'Fester Preis 45 € pro Fahrzeug', 'Persönliche Begrüßung am Terminal', 'Keine Wartezeiten auf andere Gäste'],
+        included: ['Privates VIP-Fahrzeug mit Fahrer', 'Treibstoff & Parkgebühren', 'Meet & Greet', 'Passagierversicherung'],
+        excluded: ['Getränke'],
+        whatToBring: ['Flugnummer und Hotelname'],
+        itinerary: []
+      }
+    },
+    faqs: []
+  }
+];
+
+const TOUR_IMAGES_MAP: Record<string, string> = {
+  'boat-tour': '/tours/boat-tour.jpg',
+  'green-canyon': '/tours/green-canyon.jpg',
+  'green-canyon-zoo': '/tours/green-canyon.jpg',
+  'turkish-bath-hamam': '/tours/turkish-bath-hamam.jpg',
+  'jeep-safari': '/tours/jeep-safari.jpg',
+  'rafting-combo': '/tours/rafting-combo.jpg',
+  'paragliding': '/tours/paragliding.jpg',
+  'alanya-city-tour': '/tours/alanya-city-tour.jpg',
+  'sapadere-canyon': '/tours/sapadere-canyon.jpg',
+  'pamukkale': '/tours/pamukkale.jpg',
+  'cappadocia': '/tours/cappadocia.jpg',
+  'sunset-boat-tour': '/tours/sunset-boat-tour.jpg',
+};
+
+const TRAVELERS_COUNT_MAP: Record<string, number> = {
+  'boat-tour': 3420,
+  'green-canyon': 2150,
+  'green-canyon-zoo': 890,
+  'relax-boat': 1280,
+  'diving': 940,
+  'turkish-bath-hamam': 2670,
+  'land-of-legends': 1840,
+  'land-of-legends-night-show': 1120,
+  'jeep-safari': 3890,
+  'quad-safari': 2410,
+  'buggy-safari': 1630,
+  'rafting-combo': 2980,
+  'paragliding': 2240,
+  'night-safari': 1460,
+  'alanya-city-tour': 3120,
+  'sapadere-canyon': 2750,
+  'syedra-gazipasa': 760,
+  'pamukkale': 1930,
+  'cappadocia': 1580,
+  'manavgat-side-aspendos': 1320,
+  'side-mix-tour': 1140,
+  'skydiving': 480,
+  'sunset-boat-tour': 1890,
+  'vip-yacht': 620,
+  'antalya-airport-transfer': 4150,
+  'gazipasa-airport-transfer': 2860,
+};
+
+export const INITIAL_TOURS: Tour[] = RAW_INITIAL_TOURS.map(t => ({
+  ...t,
+  image: TOUR_IMAGES_MAP[t.id] || t.image,
+  travelersCount: TRAVELERS_COUNT_MAP[t.id] || 1250,
+  translations: {
+    ...t.translations,
+    tr: TURKISH_TOUR_TRANSLATIONS[t.id] || t.translations.en
+  }
+}));
+
